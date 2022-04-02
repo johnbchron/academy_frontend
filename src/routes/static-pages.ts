@@ -5,7 +5,6 @@ export function init() {
   router.get("/", async (ctx) => {
     ctx.render("index.pug", {
       title: "Home | Allusian",
-      heroClass: true,
     });
   });
 
