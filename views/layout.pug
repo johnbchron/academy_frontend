@@ -1,0 +1,71 @@
+doctype html
+html(lang="en-us")
+  head
+    if title
+      title= title
+    else
+      title Allusian
+    // Meta tags
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=Edge")
+    meta(
+      name="viewport",
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    )
+    meta(name="format-detection", content="telephone=no")
+    meta(name="msapplication-TileColor", content="#C33764")
+    meta(name="theme-color", content="#C33764")
+    meta(name="description", content="☙Practicing poet. Photography dabbler. Cat disciple. Ecologically aware, space case. Crypto enthusiast. Occult curious. Xenite. Earthling ♁. INFP. Human.❧ ")
+    link(rel="canonical", href="https://allusian.com/")
+    meta(property="og:locale", content="en_US")
+    meta(property="og:type", content="website")
+    meta(property="og:title", content="Allusian")
+    meta(property="og:description", content="☙Practicing poet. Photography dabbler. Cat disciple. Ecologically aware, space case. Crypto enthusiast. Occult curious. Xenite. Earthling ♁. INFP. Human.❧ ")
+    meta(property="og:url", content="https://allusian.com/")
+    meta(property="og:site_name", content="Allusian")
+    link(rel="shortlink", href="https://allusian.com/")
+    link(rel="icon" type="image/png" href="/img/favicon.png")
+    // Links
+    link(rel="stylesheet", href="/stylesheets/style.css", defer)
+    //link(rel="stylesheet", href="https://unpkg.com/aos@next/dist/aos.css" defer)
+    link(rel="preconnect", href="https://fonts.googleapis.com", defer)
+    link(
+      rel="preconnect",
+      href="https://fonts.gstatic.com",
+      crossorigin,
+      defer
+    )
+    link(
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap",
+      rel="stylesheet"
+    )
+    link(rel="apple-touch-icon", href="/img/logo.png")
+    link(rel="icon", type="image/ico", href="/img/logo.ico")
+    noscript
+      link(
+        rel="stylesheet",
+        media="all",
+        href="/stylesheets/noscript.css",
+        defer
+      )
+    // Viewport relativity
+    script.
+      var viewportmeta = document.querySelector('meta[name="viewport"]');
+      if (viewportmeta) {
+        if (screen.width < 375) {
+          var newScale = screen.width / 375;
+          viewportmeta.content = "width=375, minimum-scale=" + newScale + ", maximum-scale=1.0, user-scalable=no, initial-scale=" + newScale + "";
+        } else {
+          viewportmeta.content = "width=device-width, maximum-scale=1.0, initial-scale=1.0";
+        }
+      }
+  body
+    #primary_content(
+      style="display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh"
+    )
+      .content
+        block content
+
+    // Scripts
+    script(src="/javascripts/fontawesome/fontawesome.min.js")
+    script(src="/javascripts/fontawesome/brands.min.js")

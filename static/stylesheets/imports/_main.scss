@@ -1,0 +1,20 @@
+@use "sass:math";
+
+form, fieldset {
+  flex-wrap: wrap;
+  gap: math.div($base-sizing, 2);
+  text-align: left;
+  background-color: $purple;//#0080c7;
+  border-radius: $border-radius;
+  padding: $base-sizing;
+  color: white;
+  display: inline-block;
+  flex-direction: column;
+  position: relative;
+}
+
+@media only screen and (min-width: $on-mobile) {
+}
+
+@media only screen and (max-width: $on-mobile) {
+}
