@@ -35,7 +35,6 @@
     "web3": "^1.7.1"
   },
   "devDependencies": {
-    "lite-server": "^2.6.1",
     "tsc-watch": "^4.6.2"
   }
 }
