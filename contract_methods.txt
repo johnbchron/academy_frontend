@@ -1,0 +1,38 @@
+
+	- initialize
+		- owner only
+		- relevant states: N/A (doesn't use existing tenure)
+		- parameters: horse_owner, academy_mode, initial_supply, tenure_length
+
+	- supply
+		- owner and client
+		- relevant state: [0]
+		- parameters: tenure_id, horse_id
+	- activate
+		- owner only
+		- relevant states: [1]
+		- parameters: tenure_id
+	- cancel
+		- owner and client
+		- relevant states: [0, 1, 2, 3]
+		- parameters: tenure_id
+	- pause
+		- owner only
+		- relevant state: [2]
+		- parameters: tenure_id
+	- unpause
+		- owner only
+		- relevant state: [3]
+		- parameters: tenure_id
+	- set academy mode
+		- owner only
+		- relevant states: [1, 2, 3]
+		- parameters: tenure_id, academy_mode
+	- deposit
+		- owner only
+		- relevant states: [1, 2, 3]
+		- parameters: tenure_id, amount
+	- withdraw
+		- owner only
+		- relevant states: [1, 2, 3]
+		- parameters: tenure_id, amount, address
