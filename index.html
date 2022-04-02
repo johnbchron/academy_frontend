@@ -1,23 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greeting Dapp</title>
-</head>
-<body>
-    <h1>** Greeting Dapp **</h1>
-    <br/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/index.css">
+    <title>SMR Academy Dashboard</title>
+	</head>
+	<body>
+    <div class="topnav">
+	    <button id="btn-login">Metamask Login</button>
+	    <button id="btn-logout">Logout</button>
+	  </div>
 
-    <h2></h2>
-    <form id="form">
-        <input id="input" type="text"/>
-        <input type="submit" value="submit"/>
-    </form>
+    <h1>** SMR Academy Dashboard **</h1>
 
+    <div class="cont" id="dashboard">
+	    <div class="piece" id="parameters">
+    		<h4 class="control-header">Universal Parameters</h3>
+	    	<form id="parameters">
+	    		<label for="tenure-id">Tenure ID:</label>
+	    		<label id="tenure-id-error" class="error-message"></label><br>
+	    		<input id="tenure-id" name="tenure-id" type="text">
+	    	</form>
+	    </div>
+	    <div class="piece" id="tenure-controls">
+	    	<div class="control" id="initialize-tenure">
+	    		<h4 class="control-header">Initialize Tenure</h3>
+	    		<form class="initialization" id="initialize-tenure">
+	    			<label for="initialize-tenure-horse-owner">Horse Owner:</label>
+	    			<label id="initialize-tenure-horse-owner-error" class="error-message"></label>
+	    			<input id="initialize-tenure-horse-owner" name="initialize-tenure-horse-owner" type="text"/><br>
+	    			<label for="initialize-tenure-academy-mode">Academy Mode:</label>
+	    			<label id="initialize-tenure-academy-mode-error" class="error-message"></label>
+	    			<input id="initialize-tenure-academy-mode" name="initialize-tenure-academy-mode" type="text"/><br>
+	    			<label for="initialize-tenure-initial-derc-supply">Initial $DERC Supply:</label>
+	    			<label id="initialize-tenure-initial-derc-supply-error" class="error-message"></label>
+	    			<input id="initialize-tenure-initial-derc-supply" name="initialize-tenure-initial-derc-supply" type="text"/><br>
+	    			<label for="initialize-tenure-tenure-length">Tenure Length:</label>
+	    			<label id="initialize-tenure-tenure-length-error" class="error-message"></label>
+	    			<input id="initialize-tenure-tenure-length" name="initialize-tenure-tenure-length" type="text"/><br>
+
+	    			<input type="submit" id="initialize-tenure-submit" class="submit-button" value="initialize"/>
+	    		</form>
+	    	</div>
+
+	    	<div class="control" id="supply-tenure">
+	    		<h4 class="control-header">Supply Tenure</h3>
+	    		<form class="initialization" id="supply-tenure">
+	    			<label for="supply-tenure-horse-id">Horse ID:</label>
+	    			<label id="supply-tenure-horse-id-error" class="error-message"></label>
+	    			<input id="supply-tenure-horse-id" name="supply-tenure-horse-id" type="text"/><br>
+
+	    			<input type="submit" id="supply-tenure-submit" class="submit-button" value="supply"/>
+	    		</form>
+	    	</div>
+	    	
+	    	<div class="control" id="state-change">
+	    		<h4 class="control-header">Change Tenure State</h3>
+	    		<form class="state-change" id="activate-tenure">
+	    			<input type="submit" id="activate-tenure-submit" class="submit-button" value="activate"/>
+	    		</form>
+	    		<form class="state-change" id="pause-tenure">
+	    			<input type="submit" id="pause-tenure-submit" class="submit-button" value="pause"/>
+	    		</form>
+	    		<form class="state-change" id="unpause-tenure">
+	    			<input type="submit" id="unpause-tenure-submit" class="submit-button" value="unpause"/>
+	    		</form>
+	    		<form class="state-change" id="cancel-tenure">
+	    			<input type="submit" id="cancel-tenure-submit" class="submit-button" value="cancel"/>
+	    		</form>
+	    	</div>
+	    </div>
+	    <div class="piece" id="parameter-change">
+	    	<div class="control" id="change-academy-mode">
+	    		<h4 class="control-header">Change Academy Mode</h3>
+	    		<form class="parameter-change" id="change-academy-mode">
+	    			<label for="change-academy-mode-academy-mode">Academy Mode:</label>
+	    			<label id="change-academy-mode-academy-mode-error" class="error-message"></label>
+	    			<input id="change-academy-mode-academy-mode" name="change-academy-mode-academy-mode" type="text"/><br>
+
+	    			<input type="submit" id="change-academy-mode-submit" class="submit-button" value="change academy mode"/>
+	    		</form>
+	    	</div>
+	    </div>
+    </div>
+
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
-    <script type = "text/javascript" src="src/utils.js"></script>
+    <script type="text/javascript" src="src/utils.js"></script>
     <script type="text/javascript" src ="src/index.js"></script>
-</body>
+	</body>
 </html>

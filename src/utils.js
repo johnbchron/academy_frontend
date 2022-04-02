@@ -1,30 +1,27 @@
-const getWeb3 = () => {
-  return new Promise((resolve, reject) => {
-    window.addEventListener("load", async () => {
-      if (window.ethereum) {
-        const web3 = new Web3(window.ethereum);
-        try {
-          // ask user permission to access his accounts
-          await window.ethereum.request({ method: "eth_requestAccounts" });
-          resolve(web3);
-        } catch (error) {
-          reject(error);
-        }
-      } else {
-        reject("must install MetaMask");
-      }
-    });
-  });
-};
 
-const getContract = async (web3) => {
-  const data = await $.getJSON("./contracts/Greeting.json");
+/* Moralis init code */
+const serverUrl = "https://qaphg75pwxkt.usemoralis.com:2053/server";
+const appId = "OUdGGX3gU0g6R9J4sfULWxycb21SAirjMt5cBESU";
+Moralis.start({ serverUrl, appId });
 
-  const netId = await web3.eth.net.getId();
-  const deployedNetwork = data.networks[netId];
-  const greeting = new web3.eth.Contract(
-    data.abi,
-    deployedNetwork && deployedNetwork.address
-  );
-  return greeting;
-};
+/* Authentication code */
+async function login() {
+  let user = Moralis.User.current();
+  if (!user) {
+    user = await Moralis.authenticate({
+      signingMessage: "SMR Academy login",
+    })
+      .then(function (user) {
+        console.log("logged in user:", user);
+        console.log(user.get("ethAddress"));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+}
+
+async function logOut() {
+  await Moralis.User.logOut();
+  console.log("logged out");
+}
