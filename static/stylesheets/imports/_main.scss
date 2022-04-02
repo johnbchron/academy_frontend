@@ -3,8 +3,8 @@
 .columns {
   display: flex;
   flex-wrap: wrap;
-  gap: $base-sizing;
-  padding: $base-sizing;
+  gap: $base-sizing*2;
+  padding: $base-sizing*2;
 }
 
 .section {
@@ -15,7 +15,7 @@
   min-width: max($base-sizing*15, 45%);
 
   &__text {
-    max-width: min($base-sizing*20, 100%);
+    //max-width: min($base-sizing*25, 100%);
     width: 100%;
     margin-bottom: $base-sizing;
   }
