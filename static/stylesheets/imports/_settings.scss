@@ -11,10 +11,7 @@ $border-radius: $base-sizing*0.2 !default;
 
 $grey-color: hsl(0,0%,70%) !default;
 $light-grey: hsl(0,0%,85%) !default;
-$blue: #C33764;
-$blue: #fd5e53;
-$purple: #392F5A;
-$not-blue: #FFD23F;
+$rust: #BA3F1D;
 
 $base-sizing: 30px;
 
@@ -59,8 +56,8 @@ $transition-time: 0.4s;
 }
 
 :root {
-  --background-color: linear-gradient(#111, #1f1f1f);
-	--text-color: #fff;
+  --background-color: #fff;
+	--text-color: #000;
 	--grey-text-color: #666;
 }
 

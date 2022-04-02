@@ -5,31 +5,32 @@ block content
     button#btn-login Metamask Login
     button#btn-logout Logout
   
-  .section
-    h1 SMR Academy Dashboard
-    .section__text
-      h4.control-header Universal Parameters
-        form#parameters
+  .columns
+    .section
+      .section__text
+        h1 SMR Academy Dashboard
+      .section__text
+        h4 Universal Parameters
+        form
           label(for="tenure-id") Tenure ID:
           label#tenure-id-error.error-message
           input#tenure-id(name="tenure-id" type="text")
-    .section__text
-      .control#initialize-tenure
-        h4.control-header Initialize Tenure
-        form.initialization#initialize-tenure
-          label(for="initialize-tenure-horse-owner") Horse Owner:
-          label#initialize-tenure-horse-owner-error.error-message
-          input#initialize-tenure-horse-owner(name="initialize-tenure-horse-owner" type="text")
-          label(for="initialize-tenure-academy-mode") Academy Mode:
-          label#initialize-tenure-academy-mode-error.error-message
-          input#initialize-tenure-academy-mode(name="initialize-tenure-academy-mode" type="text")
-          label(for="initialize-tenure-initial-derc-supply") Initial $DERC Supply:
-          label#initialize-tenure-initial-derc-supply-error.error-message
-          input#initialize-tenure-initial-derc-supply(name="initialize-tenure-initial-derc-supply" type="text")
-          label(for="initialize-tenure-tenure-length") Tenure Length:
-          label#initialize-tenure-tenure-length-error.error-message
-          input#initialize-tenure-tenure-length(name="initialize-tenure-tenure-length" type="text")
-          input(type="submit" value="initialize")#initialize-tenure-submit.submit-button
+      .section__text
+          h4.control-header Initialize Tenure
+          form.initialization
+            label(for="initialize-tenure-horse-owner") Horse Owner:
+            label#initialize-tenure-horse-owner-error.error-message
+            input#initialize-tenure-horse-owner(name="initialize-tenure-horse-owner" type="text")
+            label(for="initialize-tenure-academy-mode") Academy Mode:
+            label#initialize-tenure-academy-mode-error.error-message
+            input#initialize-tenure-academy-mode(name="initialize-tenure-academy-mode" type="text")
+            label(for="initialize-tenure-initial-derc-supply") Initial $DERC Supply:
+            label#initialize-tenure-initial-derc-supply-error.error-message
+            input#initialize-tenure-initial-derc-supply(name="initialize-tenure-initial-derc-supply" type="text")
+            label(for="initialize-tenure-tenure-length") Tenure Length:
+            label#initialize-tenure-tenure-length-error.error-message
+            input#initialize-tenure-tenure-length(name="initialize-tenure-tenure-length" type="text")
+            input(type="submit" value="initialize")#initialize-tenure-submit.submit-button
 
       .section__text
         h4.control-header Supply Tenure
@@ -47,7 +48,6 @@ block content
           input(type="submit" value="unpause")#unpause-tenure-submit.submit-button
           input(type="submit" value="cancel")#cancel-tenure-submit.submit-button
 
-    .section
       .section__text
         h4.control-header Change Academy Mode
         form.parameter-change#change-academy-mode
@@ -55,6 +55,10 @@ block content
           label#change-academy-mode-academy-mode-error.error-message
           input#change-academy-mode-academy-mode(name="change-academy-mode-academy-mode" type="text")
           input(type="submit" value="change academy mode")#change-academy-mode-submit.submit-button
+    .section
+      .section__text
+        h1 Hello
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora quod sit itaque nam. Et ratione sint impedit quis sapiente dolore.
 
   script.
     const serverUrl = "https://qaphg75pwxkt.usemoralis.com:2053/server";
