@@ -98,7 +98,7 @@ async function fetch_tenure(tenure_id) {
 
 async function build_admin_dashboard() {
   const tenures = await fetch_all_tenures();
-  
+  console.log(tenures);
 }
 
 async function build_standard_dashboard() {
