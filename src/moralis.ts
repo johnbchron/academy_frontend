@@ -113,19 +113,16 @@ async function build_admin_dashboard() {
   console.log(tenures);
 
   let table_data = "<tr><th>ID</th><th>State</th><th>Horse ID</th><th>Length</th><th>End Time</th></tr>";
+  const separator = "</td><td>"
 
   for await (const i of tenures) {
-    table_data = table_data + "<tr><td>";
-    table_data = table_data + i.id;
-    table_data = table_data + "</td><td>";
-    table_data = table_data + i.state;
-    table_data = table_data + "</td><td>";
-    table_data = table_data + i.horse_id;
-    table_data = table_data + "</td><td>";
-    table_data = table_data + i.tenure_length;
-    table_data = table_data + "</td><td>";
-    table_data = table_data + "placeholder";
-    table_data = table_data + "</td></tr>";
+    table_data += "<tr><td>";
+    table_data += i.id + separator;
+    table_data += i.state + separator;
+    table_data += i.horse_id + separator;
+    table_data += i.length + separator;
+    table_data += "placeholder" + separator;
+    table_data += "</td></tr>";
   }
 
   static_content.table.innerHTML = table_data;
