@@ -112,24 +112,19 @@ async function build_admin_dashboard() {
   const tenures = await fetch_all_tenures();
   console.log(tenures);
 
-  const example = [
-    {
-      test: "Hello",
-      testtwo: "World"
-    },
-    {
-      test: "Hello",
-      testtwo: "Other world idk"
-    }
-  ]
+  let table_data = "<tr><th>ID</th><th>State</th><th>Horse ID</th><th>Length</th><th>End Time</th></tr>";
 
-  let table_data = "<tr><th>Hello!</th></tr>";
-
-  for await (const i of example) {
+  for await (const i of tenures) {
     table_data = table_data + "<tr><td>";
-    table_data = table_data + i.test;
-    table_data = table_data + " | ";
-    table_data = table_data + i.testtwo;
+    table_data = table_data + i.id;
+    table_data = table_data + "</td><td>";
+    table_data = table_data + i.state;
+    table_data = table_data + "</td><td>";
+    table_data = table_data + i.horse_id;
+    table_data = table_data + "</td><td>";
+    table_data = table_data + i.tenure_length;
+    table_data = table_data + "</td><td>";
+    table_data = table_data + "placeholder";
     table_data = table_data + "</td></tr>";
   }
 
