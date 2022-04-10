@@ -112,7 +112,28 @@ async function build_admin_dashboard() {
   const tenures = await fetch_all_tenures();
   console.log(tenures);
 
-  static_content.table.innerHTML = "<tr><th>Hello!</th></tr><tr><td>This is data. You can probably make this cleaner by extrapolating away from pure HTML...</td></th>"
+  const example = [
+    {
+      test: "Hello",
+      testtwo: "World"
+    },
+    {
+      test: "Hello",
+      testtwo: "Other world idk"
+    }
+  ]
+
+  let table_data = "<tr><th>Hello!</th></tr>";
+
+  for await (const i of example) {
+    table_data = table_data + "<tr><td>";
+    table_data = table_data + i.test;
+    table_data = table_data + " | ";
+    table_data = table_data + i.testtwo;
+    table_data = table_data + "</td></tr>";
+  }
+
+  static_content.table.innerHTML = table_data;
 }
 
 async function build_standard_dashboard() {
