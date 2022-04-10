@@ -15,10 +15,13 @@ const pages = {
 
 const static_content = {
   login_failed_button: document.getElementById('login-failed-button')!,
-  table: document.getElementById('table')!
+  table: document.getElementById('table')!,
+  form: document.getElementById('form')!
 }
 
 initialize();
+
+static_content.form.addEventListener("submit", submit_form, true);
 
 async function initialize() {
   await Moralis.start({ serverUrl, appId });
@@ -147,6 +150,11 @@ async function cancel_prompt(id) {
       await cancel_tenure(id);
     }
   })
+}
+
+async function submit_form(event) {
+  event.preventDefault();
+  // event has a lot of data and static_content.form has a lot of data. Take your pick.
 }
 
 async function cancel_tenure(id) {
