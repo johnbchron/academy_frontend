@@ -138,10 +138,19 @@ async function build_standard_dashboard() {
 
 async function cancel_prompt(id) {
   Swal.fire({
-    title: 'Hey Idiot!',
-    text: 'Do you want to continue',
-    confirmButtonText: 'Cool'
+    title: 'Cancel Tenure',
+    text: 'Are you sure you want to cancel this tenure? The horse asset will be returned to its owner.',
+    showCancelButton: false,
+    confirmButtonText: 'Yes, Cancel',
+  }).then( async (result) => {
+    if (result.isConfirmed) {
+      await cancel_tenure(id);
+    }
   })
+}
+
+async function cancel_tenure(id) {
+  Swal.fire('Cancelled #' + String(id), '', 'success');
 }
 
 async function isLoggedIn(user): Promise<Boolean> {
