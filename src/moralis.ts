@@ -113,7 +113,7 @@ async function build_admin_dashboard() {
   const tenures = await fetch_all_tenures();
   console.log(tenures);
 
-  let table_data = "<tr><th>ID</th><th>State</th><th>Horse ID</th><th>Length</th><th>End Time</th><th>Cancel</th></tr>";
+  let table_data = "<tr><th>ID</th><th>State</th><th>Horse ID</th><th>Length</th><th>End Time</th><th>Actions</th></tr>";
   const separator = "</td><td>"
 
   for await (const i of tenures) {
