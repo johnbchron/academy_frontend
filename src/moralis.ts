@@ -14,6 +14,7 @@ const pages = {
 
 const static_content = {
   login_failed_button: document.getElementById('login-failed-button')!,
+  table: document.getElementById('table')!
 }
 
 initialize();
@@ -99,6 +100,8 @@ async function fetch_tenure(tenure_id) {
 async function build_admin_dashboard() {
   const tenures = await fetch_all_tenures();
   console.log(tenures);
+
+  static_content.table.innerHTML = "<tr><th>Hello!</th></tr><tr><td>This is data. You can probably make this cleaner by extrapolating away from pure HTML...</td></th>"
 }
 
 async function build_standard_dashboard() {
