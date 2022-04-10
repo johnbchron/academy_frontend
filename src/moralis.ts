@@ -75,11 +75,22 @@ async function fetch_all_tenures() {
 
   const tenure_ids = await Moralis.executeFunction(get_all_tenures_parameters);
 
-  let tenures: any = []
+  let tenures: any = [];
   for (let i = 0; i < tenure_ids.length; i++) {
-    tenures.push(await fetch_tenure(tenure_ids[i]));
+    const rawTenure = await fetch_tenure(tenure_ids[i])
+    const tenure = {
+      id: tenure_ids[i],
+      academy_mode: rawTenure.academy_mode,
+      current_derc_supply: rawTenure.current_derc_supply,
+      horse_id: rawTenure.horse_id,
+      horse_owner: rawTenure.horse_owner,
+      initial_derc_supply: rawTenure.initial_derc_supply,
+      start_time: rawTenure.start_time,
+      state: rawTenure.state,
+      tenure_length: rawTenure.tenure_length
+    };
+    tenures.push(tenure);
   }
-
   return tenures;
 }
 
@@ -128,6 +139,10 @@ async function authenticate() {
   await Moralis.authenticate({
     signingMessage: "SMR Academy login",
   });
+}
+
+var isNumber = function isNumber(value) {
+  return typeof value === 'number' && isFinite(value);
 }
 
 // academy: 0x667b5a01bf2E5dA93e6D355130b76B9411082d31
