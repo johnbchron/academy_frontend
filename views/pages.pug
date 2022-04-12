@@ -6,37 +6,39 @@ block content
     .columns
       .section
         .section__text
-          h1 Welcome to the SMR Academy Dashboard
+          h1 welcome to the SMR academy dashboard
 
   .page#login-failed
     .columns
       .section
         .section__text
-          h1#login-failed-button Login failed, click here to retry
+          h1#login-failed-button login failed, click here to retry
 
   .page#admin
+    h1 admin dashboard
+
     .columns
       .section
         .section__text
-          h1 Admin Dashboard
+          h2 tenures
           table#table
           
       .section
         .section__text
-          h2 Content
+          h2 other tools
+          h3 initialize tenure
           form(method="post")#form
-            input(name="address")
-            input(name="integer1")
-            input(name="integer2")
-            input(name="test")
-            input(type="submit" value="Submit")
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora quod sit itaque nam. Et ratione sint impedit quis sapiente dolore.
+            input(name="horse_owner", type="text", placeholder="horse owner (address)")
+            input(name="academy_mode", type="number", placeholder="academy mode")
+            input(name="initial_supply", type="number", placeholder="initial $DERC supply")
+            input(name="tenure_length", type="number", placeholder="length (in seconds)")
+            input(type="submit" value="initialize tenure")
 
   .page#standard
     .columns
       .section
         .section__text
-          h1 Standard Dashboard
+          h1 standard dashboard
           
       .section
         .section__text
