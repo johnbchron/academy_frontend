@@ -137,66 +137,90 @@ async function build_admin_dashboard() {
   tenures = await fetch_all_tenures();
   console.log(tenures);
 
-  let table_data = "<tr><th>ID</th><th>state</th><th>horse ID</th><th>length</th><th>end time</th><th>actions</th></tr>";
+  let table_data = "<tr><th>ID</th><th>state</th><th>mode</th><th>owner</th><th>horse ID</th><th>start time</th><th>length</th><th>initial balance</th><th>current balance</th><th>actions</th></tr>";
+
   const separator = "</td><td>"
 
   let index;
   for (index = tenures.length - 1; index >= 0; index--) {
     const i = tenures[index];
+    const cancel_button = `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+    const supply_button = `<button onclick="javascript:supply_prompt(${i.id})">supply</button>`;
+    const activate_button = `<button onclick="javascript:activate_prompt(${i.id})">activate</button>`;
+    const pause_button = `<button onclick="javascript:pause_prompt(${i.id})">pause</button>`;
+    const unpause_button = `<button onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
+    const deposit_button = `<button onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
+    const withdraw_button = `<button onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
+    const change_mode_button = `<button onclick="javascript:change_mode_prompt(${i.id})">change mode</button>`;
 
-    let state = "";
-    let actions = "";
     switch (i.state) {
       case 0: {
-        state = "initialized";
-        actions += `<button onclick="javascript:supply_prompt(${i.id})">supply</button>`;
-        actions += `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+        table_data += "<tr><td>" + i.id + separator;
+        table_data += "initialized" + separator;
+        table_data += i.academy_mode + separator;
+        table_data += abbreviate_address(i.horse_owner) + separator;
+        table_data += separator + separator + unix_time_to_duration(i.tenure_length) + separator;
+        table_data += wei_to_eth(i.initial_derc_supply) + " DERC" + separator;
+        table_data += wei_to_eth(i.current_derc_supply) + " DERC" + separator;
+        table_data += supply_button + cancel_button;
         break;
       }
       case 1: {
-        state = "supplied";
-        actions += `<button onclick="javascript:activate_prompt(${i.id})">activate</button>`;
-        actions += `<button onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
-        actions += `<button onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
-        actions += `<button onclick="javascript:set_academy_mode_prompt(${i.id})">change mode</button>`;
-        actions += `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+        table_data += "<tr><td>" + i.id + separator;
+        table_data += "supplied" + separator;
+        table_data += i.academy_mode + separator;
+        table_data += abbreviate_address(i.horse_owner) + separator;
+        table_data += i.horse_id + separator;
+        table_data += separator + unix_time_to_duration(i.tenure_length) + separator;
+        table_data += wei_to_eth(i.initial_derc_supply) + " DERC" + separator;
+        table_data += wei_to_eth(i.current_derc_supply) + " DERC" + separator;
+        table_data += activate_button + deposit_button + withdraw_button + change_mode_button + cancel_button;
         break;
       }
       case 2: {
-        state = "active";
-        actions += `<button onclick="javascript:pause_prompt(${i.id})">pause</button>`;
-        actions += `<button onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
-        actions += `<button onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
-        actions += `<button onclick="javascript:set_academy_mode_prompt(${i.id})">change mode</button>`;
-        actions += `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+        table_data += "<tr><td>" + i.id + separator;
+        table_data += "active" + separator;
+        table_data += i.academy_mode + separator;
+        table_data += abbreviate_address(i.horse_owner) + separator;
+        table_data += i.horse_id + separator;
+        table_data += unix_time_to_timestamp(i.start_time) + separator;
+        table_data += unix_time_to_duration(i.tenure_length) + separator;
+        table_data += wei_to_eth(i.initial_derc_supply) + " DERC" + separator;
+        table_data += wei_to_eth(i.current_derc_supply) + " DERC" + separator;
+        table_data += pause_button + deposit_button + withdraw_button + change_mode_button + cancel_button;
         break;
       }
       case 3: {
-        state = "paused";
-        actions += `<button onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
-        actions += `<button onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
-        actions += `<button onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
-        actions += `<button onclick="javascript:set_academy_mode_prompt(${i.id})">change mode</button>`;
-        actions += `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+        table_data += "<tr><td>" + i.id + separator;
+        table_data += "paused" + separator;
+        table_data += i.academy_mode + separator;
+        table_data += abbreviate_address(i.horse_owner) + separator;
+        table_data += i.horse_id + separator;
+        table_data += unix_time_to_timestamp(i.start_time) + separator;
+        table_data += unix_time_to_duration(i.tenure_length) + separator;
+        table_data += wei_to_eth(i.initial_derc_supply) + " DERC" + separator;
+        table_data += wei_to_eth(i.current_derc_supply) + " DERC" + separator;
+        table_data += unpause_button + deposit_button + withdraw_button + change_mode_button + cancel_button;
         break;
       }
       case 4: {
-        state = "cancelled";
+        table_data += "<tr><td>" + i.id + separator;
+        table_data += "cancelled" + separator;
+        table_data += i.academy_mode + separator;
+        table_data += abbreviate_address(i.horse_owner) + separator;
+        table_data += i.horse_id + separator;
+        if (i.start_time > 0) {
+          table_data += unix_time_to_timestamp(i.start_time) + separator;
+        } else {
+          table_data += "never" + separator;
+        }
+        table_data += unix_time_to_duration(i.tenure_length) + separator;
+        table_data += wei_to_eth(i.initial_derc_supply) + " DERC" + separator;
+        table_data += wei_to_eth(i.current_derc_supply) + " DERC" + separator;
         break;
       }
     }
 
-    table_data += "<tr><td>";
-    table_data += i.id + separator;
-    table_data += state + separator;
-    if (i.state != 0) {
-      table_data += i.horse_id + separator;
-      table_data += i.length + separator;
-      table_data += "placeholder" + separator;
-    } else {
-      table_data += separator + separator + separator;
-    }
-    table_data += actions;
     table_data += "</td></tr>";
   }
 
@@ -367,6 +391,78 @@ async function deposit_prompt(id) {
   })
 }
 
+async function withdraw_prompt(id) {
+  let relevant_tenure;
+  for (const tenure of tenures) {
+    if (tenure.id == Number(id)) {
+      relevant_tenure = tenure;
+    }
+  }
+
+  Swal.fire({
+    title: 'Withdraw from Tenure',
+    html: '<input type="text" id="to_address_input" class="swal2-input" placeholder="to address"><input type="number" id="amount_input" class="swal2-input" placeholder="amount">',
+    showCancelButton: true,
+    confirmButtonText: 'Withdraw',
+    preConfirm: () => {
+      const to_address = Swal.getPopup().querySelector("#to_address_input").value;
+      const amount = Swal.getPopup().querySelector("#amount_input").value;
+      if (!amount || Number(amount) < 0) {
+        Swal.showValidationMessage('please enter a positive $DERC amount');
+      }
+      if (!to_address || !(Web3.utils.isAddress(to_address))) {
+        Swal.showValidationMessage('please enter a valid destination address');
+      }
+      return { amount: amount, to_address: to_address };
+    }
+  }).then( async (result) => {
+    if (!result.isConfirmed) {
+      return;
+    }
+
+    Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
+    const transaction = await withdraw_from_tenure(id, result.value.to_address, BigInt(result.value.amount) * BigInt(10 ** 18));
+    Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
+    await transaction.wait();
+    Swal.fire('withdrew ' + String(result.value.amount) + ' $DERC to ' + String(result.value.to_address), '', 'success');
+    await reload_dashboard();
+  })
+}
+
+async function change_mode_prompt(id) {
+  let relevant_tenure;
+  for (const tenure of tenures) {
+    if (tenure.id == Number(id)) {
+      relevant_tenure = tenure;
+    }
+  }
+
+  Swal.fire({
+    title: 'Change Tenure Mode',
+    html: '<input type="number" id="mode_input" class="swal2-input" placeholder="new mode">',
+    showCancelButton: true,
+    confirmButtonText: 'Change Mode',
+    preConfirm: () => {
+      const mode = Swal.getPopup().querySelector("#mode_input").value;
+      if (!mode || Number(mode) < 0) {
+        Swal.showValidationMessage('please enter a valid academy mode');
+      }
+      return { mode: mode };
+    }
+  }).then( async (result) => {
+    if (!result.isConfirmed) {
+      return;
+    }
+
+    Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
+    const transaction = await change_tenure_mode(id, result.value.mode);
+    Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
+    await transaction.wait();
+    Swal.fire('changed mode to ' + String(result.value.mode), '', 'success');
+    await reload_dashboard();
+  })
+}
+
 async function initialize_tenure(horse_owner, academy_mode, initial_derc_supply, length) {
   const initialize_tenure_parameters = {
     contractAddress: ACADEMY_CONTRACT_ADDRESS,
@@ -449,6 +545,35 @@ async function deposit_to_tenure(id, amount) {
   };
 
   return await Moralis.executeFunction(deposit_to_tenure_parameters);
+}
+
+async function withdraw_from_tenure(id, to_address, amount) {
+  const withdraw_from_tenure_parameters = {
+    contractAddress: ACADEMY_CONTRACT_ADDRESS,
+    functionName: "withdraw_funds_from_tenure",
+    abi: ACADEMY_CONTRACT_ABI,
+    params: {
+      tenure_id: id,
+      amount: amount,
+      to_address: to_address
+    }
+  };
+
+  return await Moralis.executeFunction(withdraw_from_tenure_parameters);
+}
+
+async function change_tenure_mode(id, mode) {
+  const change_tenure_mode_parameters = {
+    contractAddress: ACADEMY_CONTRACT_ADDRESS,
+    functionName: "set_tenure_academy_mode",
+    abi: ACADEMY_CONTRACT_ABI,
+    params: {
+      tenure_id: id,
+      academy_mode: mode
+    }
+  };
+
+  return await Moralis.executeFunction(change_tenure_mode_parameters);
 }
 
 async function approve_derc(address, amount) {
@@ -536,6 +661,54 @@ async function authenticate() {
 
 function isNumber(n){
     return Number(n)=== n;
+}
+
+function abbreviate_address(address) {
+  return address.substring(0,6) + "..." + address.substring(address.length-4, address.length);
+}
+
+function wei_to_eth(input) {
+  return input / (10 ** 18);
+}
+
+function unix_time_to_duration(input) {
+  let value = 0;
+  let unit = "";
+
+  if (input < 60) {
+    value = input;
+    unit = "second";
+  } else if (input < 3600) {
+    value = Math.floor(input/60);
+    unit = "minute";
+  } else if (input < (3600 * 24)) {
+    value = Math.floor(input/3600);
+    unit = "hour";
+  } else if (input < (3600 * 24 * 7)) {
+    value = Math.floor(input/(3600*24));
+    unit = "day";
+  } else if (input < (3600 * 24 * 30)) {
+    value = Math.floor(input/(3600*24*7));
+    unit = "week"
+  } else if (input < (3600 * 24 * 365)) {
+    value = Math.floor(input/(3600*24*30));
+    unit = "month";
+  } else {
+    value = Math.floor(input/(3600*24*365));
+    unit = "year"
+  }
+
+  if (value > 1) {
+    unit += "s";
+  }
+
+  return String(value) + " " + unit;
+}
+
+function unix_time_to_timestamp(input) {
+  var d = new Date(input * 1000);
+  // return d.getDate() + '/' + (d.getMonth()) + '/' + d.getFullYear() + " " + d.getHours() + ':' + d.getMinutes();
+  return d.toLocaleTimeString("en-US") + " " + d.toLocaleDateString("en-US")
 }
 
 // academy: 0x667b5a01bf2E5dA93e6D355130b76B9411082d31
