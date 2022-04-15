@@ -18,14 +18,14 @@ var tenures;
 
 const pages = {
   landing: document.getElementById("landing")!,
-  login_failed: document.getElementById("login-failed")!,
   admin: document.getElementById("admin")!,
   standard: document.getElementById("standard")!
 }
 
 const static_content = {
-  login_failed_button: document.getElementById('login-failed-button')!,
   admin_table: document.getElementById('admin-table')!,
+  login_button: document.getElementById("login-button")!,
+  tip: document.getElementById("tip")!,
   standard_table: document.getElementById('standard-table')!,
   form: document.getElementById('form')!
 }
@@ -37,45 +37,51 @@ static_content.form.addEventListener("submit", submit_form, true);
 async function initialize() {
   await Moralis.start({ serverUrl, appId });
 
-  static_content.login_failed_button.onclick = reload;
-
-  route();
-}
-
-async function route() {
   const current_user = Moralis.User.current();
 
   if (!await isLoggedIn(current_user)) {
+    route("login");
+  }
+}
+
+static_content.login_button.addEventListener("click", async () => { await route("authenticate") });
+
+async function route(page: "login" | "authenticate") {
+  if (page === "login") {
+    const button: any = static_content.login_button;
+    button.disabled = false;
+
     pages.landing.style.display = "block";
-    pages.login_failed.style.display = "none";
     pages.admin.style.display = "none";
     pages.standard.style.display = "none";
-  }
 
-  await authenticate()
-    .then(async function () {
-      admin = await isAdmin(Moralis.User.current());
-      if (admin) {
-        pages.landing.style.display = "none";
-        pages.login_failed.style.display = "none";
-        pages.admin.style.display = "block";
-        pages.standard.style.display = "none";
-        await build_admin_dashboard();
-      } else {
-        pages.landing.style.display = "none";
-        pages.login_failed.style.display = "none";
+    static_content.tip.innerHTML = "This will initiate a transaction in MetaMask to allow you to log in.";
+  } else if (page === "authenticate") {
+    await authenticate()
+      .then(async function () {
+        admin = await isAdmin(Moralis.User.current());
+        if (admin) {
+          pages.landing.style.display = "none";
+          pages.admin.style.display = "block";
+          pages.standard.style.display = "none";
+          await build_admin_dashboard();
+        } else {
+          pages.landing.style.display = "none";
+          pages.admin.style.display = "none";
+          pages.standard.style.display = "block";
+          await build_standard_dashboard();
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        pages.landing.style.display = "block";
+        const button: any = static_content.login_button;
+        button.disabled = false;
+        static_content.tip.innerHTML = "Login failed. Please make sure MetaMask is on the right network and try again.";
         pages.admin.style.display = "none";
-        pages.standard.style.display = "block";
-        await build_standard_dashboard();
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-      pages.landing.style.display = "none";
-      pages.login_failed.style.display = "block";
-      pages.admin.style.display = "none";
-      pages.standard.style.display = "none";
-    });
+        pages.standard.style.display = "none";
+      });
+    }
 }
 
 async function reload_dashboard() {
@@ -754,7 +760,7 @@ async function isAdmin(user): Promise<Boolean> {
 
 async function authenticate() {
   await Moralis.authenticate({
-    signingMessage: "SMR Academy login",
+    signingMessage: "SMR Academy Login",
   });
 }
 

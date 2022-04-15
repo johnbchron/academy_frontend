@@ -57,10 +57,6 @@ hr {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul:not(.nav-links), ol:not(.nav-links), dl, figure, %vertical-rhythm {
-  margin-bottom: $base-sizing * 0.5;
-}
-
 /**
  * `main` element
  */
