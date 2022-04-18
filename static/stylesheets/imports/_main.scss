@@ -25,7 +25,7 @@
     background-color: $primary_color;
     color: white;
 
-    &:hover {
+    &:hover, &:active {
       color: white;
     }
   }
@@ -114,6 +114,11 @@ input {
   outline: none;
   border: none;
   width: 100%;
+  color: black;
+}
+
+.coolfontyoushouldnamethisclasssomethingbetterthankyou {
+  font-family: "Inconsolata", sans-serif;
 }
 
 @media only screen and (min-width: $on-mobile) {
