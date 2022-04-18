@@ -81,6 +81,12 @@ form, fieldset {
   display: none;
 }
 
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: $base-sizing;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -95,6 +101,11 @@ form, fieldset {
 
   &:hover {
     box-shadow: var(--shadow);
+  }
+
+  data {
+    font-size: .75em;
+    color: rgba(0 0 0 / 70%);
   }
 
   .column {
