@@ -287,10 +287,13 @@ pre {
  */
 
 table {
-  width: 100%;
   text-align: $table-text-align;
   border-collapse: collapse;
   border: 1px solid $light-grey;
+  display: inline-block;
+  max-width: 100%;
+  overflow: auto;
+  border-radius: $border-radius;
 
   tr {
     &:nth-child(even) {

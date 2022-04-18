@@ -3,36 +3,10 @@ extends layout
 block content
 
   .page#landing
-    .columns
-      .section
-        .section__text.section__color
-          h5 Academy
-          h1 Dashboard Login
-          p.vr#tip 
-          button.btn.vr#login-button Login
+    include imports/landing
 
   .page#admin
-    h1 admin dashboard
-
-    .columns
-      .section
-        .section__text
-          h2 tenures
-          table#admin-table
-          
-        .section__text
-          h2 other tools
-          h3 initialize tenure
-          form(method="post")#form
-            input(name="horse_owner", type="text", placeholder="horse owner (address)")
-            input(name="academy_mode", type="number", placeholder="academy mode")
-            input(name="initial_supply", type="number", placeholder="initial $DERC supply")
-            input(name="tenure_length", type="number", placeholder="length (in seconds)")
-            input(type="submit" value="initialize tenure")
+    include imports/admin
 
   .page#standard
-    .columns
-      .section
-        .section__text
-          h2 tenures
-          table#standard-table
+    include imports/standard

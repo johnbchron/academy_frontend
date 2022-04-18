@@ -6,7 +6,7 @@ const CHAIN_ID = 137;
 const ACADEMY_CONTRACT_ABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tenure_id","type":"uint256"},{"indexed":false,"internalType":"uint8","name":"academy_mode","type":"uint8"},{"indexed":false,"internalType":"uint256","name":"start_time","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"tenure_length","type":"uint256"}],"name":"TenureActivated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tenure_id","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"current_derc_supply","type":"uint256"}],"name":"TenureCancelled","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tenure_id","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"current_derc_supply","type":"uint256"}],"name":"TenureExpired","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tenure_id","type":"uint256"},{"indexed":false,"internalType":"address","name":"horse_owner","type":"address"},{"indexed":false,"internalType":"uint8","name":"academy_mode","type":"uint8"},{"indexed":false,"internalType":"uint256","name":"derc_requirement","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"tenure_length","type":"uint256"}],"name":"TenureInitialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tenure_id","type":"uint256"},{"indexed":false,"internalType":"address","name":"horse_owner","type":"address"},{"indexed":false,"internalType":"uint64","name":"horse_id","type":"uint64"},{"indexed":false,"internalType":"uint256","name":"supplied_derc","type":"uint256"}],"name":"TenureSupplied","type":"event"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_academy","type":"address"}],"name":"set_roles","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_derace_contract","type":"address"},{"internalType":"address","name":"_horse_token","type":"address"},{"internalType":"address","name":"_derc_token","type":"address"}],"name":"set_external_contracts","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_horse_owner","type":"address"},{"internalType":"uint8","name":"_academy_mode","type":"uint8"},{"internalType":"uint256","name":"_initial_derc_supply","type":"uint256"},{"internalType":"uint256","name":"_tenure_length","type":"uint256"}],"name":"initialize_tenure","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"}],"name":"get_tenure","outputs":[{"internalType":"enum Tenure.TenureState","name":"state","type":"uint8"},{"internalType":"address","name":"horse_owner","type":"address"},{"internalType":"uint64","name":"horse_id","type":"uint64"},{"internalType":"uint8","name":"academy_mode","type":"uint8"},{"internalType":"uint256","name":"initial_derc_supply","type":"uint256"},{"internalType":"uint256","name":"current_derc_supply","type":"uint256"},{"internalType":"uint256","name":"start_time","type":"uint256"},{"internalType":"uint256","name":"tenure_length","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"}],"name":"get_tenure_address","outputs":[{"internalType":"address","name":"tenure_address","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"get_all_tenures","outputs":[{"internalType":"uint256[]","name":"all_tenures","type":"uint256[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"},{"internalType":"uint64","name":"_horse_id","type":"uint64"}],"name":"supply_tenure","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"}],"name":"activate_tenure","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"},{"internalType":"uint256","name":"race_id","type":"uint256"}],"name":"register","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"}],"name":"cancel_tenure","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"},{"internalType":"bool","name":"paused","type":"bool"}],"name":"set_tenure_paused","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"},{"internalType":"uint8","name":"academy_mode","type":"uint8"}],"name":"set_tenure_academy_mode","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"deposit_funds_to_tenure","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tenure_id","type":"uint256"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"to_address","type":"address"}],"name":"withdraw_funds_from_tenure","outputs":[],"stateMutability":"nonpayable","type":"function"}];
 const ERC20_CONTRACT_ABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"}];
 const ERC721_CONTRACT_ABI = [{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}];
-const ACADEMY_CONTRACT_ADDRESS = "0x3930f79b70aD5BC4605ac2db04872BE9D79c6ce4"; //
+const ACADEMY_CONTRACT_ADDRESS = "0x71C6EC2058175480b035d69D963C268E4CdF7614"// "0x3930f79b70aD5BC4605ac2db04872BE9D79c6ce4"; //
 const DERC_CONTRACT_ADDRESS = "0xb35fcbcf1fd489fce02ee146599e893fdcdc60e6"
 const HORSE_CONTRACT_ADDRESS = "0x9d77cb4D8371736e2A2b2bfAa677b7841cDc8fC1";
 
@@ -39,9 +39,12 @@ async function initialize() {
 
   const current_user = Moralis.User.current();
 
-  if (!await isLoggedIn(current_user)) {
+  route("login");
+
+  // TODO: use cookies to remember sessions
+  /*if (!await isLoggedIn(current_user)) {
     route("login");
-  }
+  }*/
 }
 
 static_content.login_button.addEventListener("click", async () => { await route("authenticate") });
@@ -51,11 +54,11 @@ async function route(page: "login" | "authenticate") {
     const button: any = static_content.login_button;
     button.disabled = false;
 
+    static_content.tip.innerHTML = "This will initiate a transaction in MetaMask to allow you to log in.";
+
     pages.landing.style.display = "block";
     pages.admin.style.display = "none";
     pages.standard.style.display = "none";
-
-    static_content.tip.innerHTML = "This will initiate a transaction in MetaMask to allow you to log in.";
   } else if (page === "authenticate") {
     await authenticate()
       .then(async function () {
@@ -144,29 +147,29 @@ async function fetch_tenure(tenure_id) {
 }
 
 async function build_admin_dashboard() {
-  static_content.admin_table.innerHTML = "<tr><th>loading tenure data</th><tr>";
+  //static_content.admin_table.innerHTML = "<p>loading tenure data</p>";
 
   tenures = await fetch_all_tenures();
 
-  let table_data = "<tr><th>ID</th><th>state</th><th>mode</th><th>owner</th><th>horse ID</th><th>start time</th><th>approved length</th><th>initial balance</th><th>current balance</th><th>actions</th></tr>";
+  let table_data = "";
 
-  const separator = "</td><td>"
+  const separator = "</div>"
 
   let index;
-  for (index = tenures.length - 1; index >= 0; index--) {
+  /*for (index = tenures.length - 1; index >= 0; index--) {
     const i = tenures[index];
-    const cancel_button = `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
-    const supply_button = `<button onclick="javascript:supply_prompt(${i.id})">supply</button>`;
-    const activate_button = `<button onclick="javascript:activate_prompt(${i.id})">activate</button>`;
-    const pause_button = `<button onclick="javascript:pause_prompt(${i.id})">pause</button>`;
-    const unpause_button = `<button onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
-    const deposit_button = `<button onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
-    const withdraw_button = `<button onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
-    const change_mode_button = `<button onclick="javascript:change_mode_prompt(${i.id})">change mode</button>`;
+    const cancel_button = `<button class="btn" onclick="javascript:cancel_prompt(${i.id})">Cancel</button>`;
+    const supply_button = `<button class="btn" onclick="javascript:supply_prompt(${i.id})">Supply</button>`;
+    const activate_button = `<button class="btn" onclick="javascript:activate_prompt(${i.id})">Activate</button>`;
+    const pause_button = `<button class="btn" onclick="javascript:pause_prompt(${i.id})">Pause</button>`;
+    const unpause_button = `<button class="btn" onclick="javascript:unpause_prompt(${i.id})">Unpause</button>`;
+    const deposit_button = `<button class="btn" onclick="javascript:deposit_prompt(${i.id})">Deposit</button>`;
+    const withdraw_button = `<button class="btn" onclick="javascript:withdraw_prompt(${i.id})">Withdraw</button>`;
+    const change_mode_button = `<button class="btn" onclick="javascript:change_mode_prompt(${i.id})">Change Mode</button>`;
 
     switch (i.state) {
       case 0: {
-        table_data += "<tr><td>" + i.id + separator;
+        table_data += "<div class=\"row\">" + i.id + separator;
         table_data += "initialized" + separator;
         table_data += i.academy_mode + separator;
         table_data += abbreviate_address(i.horse_owner) + separator;
@@ -234,9 +237,9 @@ async function build_admin_dashboard() {
     }
 
     table_data += "</td></tr>";
-  }
+  }*/
 
-  static_content.admin_table.innerHTML = table_data;
+  //static_content.admin_table.innerHTML = table_data;
 }
 
 async function build_standard_dashboard() {
@@ -258,8 +261,8 @@ async function build_standard_dashboard() {
 
   for (index = user_tenures.length - 1; index >= 0; index--) {
     const i = user_tenures[index];
-    const cancel_button = `<button onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
-    const supply_button = `<button onclick="javascript:supply_prompt(${i.id})">supply</button>`;
+    const cancel_button = `<button class="btn" onclick="javascript:cancel_prompt(${i.id})">Cancel</button>`;
+    const supply_button = `<button class="btn" onclick="javascript:supply_prompt(${i.id})">Supply</button>`;
 
     switch (i.state) {
       case 0: {

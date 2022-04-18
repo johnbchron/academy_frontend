@@ -8,6 +8,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: $base-sizing*2;
+  min-height: 100vh;
+
+  .column {
+    max-width: min(100%, $base-sizing*23);
+  }
 }
 
 .btn {
@@ -15,16 +20,24 @@
   color: black;
   padding: math.div($base-sizing, 2) math.div($base-sizing, 1);
   font-size: .9em;
+
+  &__rust {
+    background-color: $rust;
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex: 1;
   width: 100%;
-  min-height: 100vh;
 
   h5, .tip {
     color: rgba(255 255 255 / 75%);
@@ -37,7 +50,6 @@
   &__text {
     //max-width: min($base-sizing*25, 100%);
     width: 100%;
-    margin-bottom: $base-sizing;
     padding: $base-sizing;
     max-width: min($base-sizing*30, 100%);
     width: 100%;
@@ -47,6 +59,7 @@
     background: $rust;
     color: white;
     border-radius: $border-radius;
+    box-shadow: var(--shadow);
   }
 }
 
@@ -67,8 +80,48 @@ form, fieldset {
   display: none;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgb(0 0 0 / 16%);
+  transition: $transition-time;
+  border-radius: $border-radius;
+  padding: $base-sizing;
+  width: 100%;
+  margin: 0;
+  grid-gap: $base-sizing 0;
+
+  &:hover {
+    box-shadow: var(--shadow);
+  }
+
+  .column {
+    color: black;
+    flex: 1;
+
+    &__right {
+      flex: 2;
+      display: flex;
+      justify-content: end;
+    }
+  }
+}
+
+input {
+  padding: math.div($base-sizing, 2);
+  border-radius: $border-radius;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
 @media only screen and (min-width: $on-mobile) {
 }
 
 @media only screen and (max-width: $on-mobile) {
+  .row {
+    flex-direction: column;
+    padding: 0 30px;
+  }
 }
