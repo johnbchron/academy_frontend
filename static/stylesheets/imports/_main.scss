@@ -93,13 +93,27 @@ form, fieldset {
   width: 100%;
   margin: 0;
   grid-gap: $base-sizing 0;
+  font-size: .9em;
+
+  .columns {
+    &-2 {
+      display: flex;
+      flex: 2;
+    }
+
+    &-1 {
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+  }
 
   &:hover {
     box-shadow: var(--shadow);
   }
 
   data {
-    font-size: .75em;
+    font-size: .9em;
     color: rgba(0 0 0 / 70%);
   }
 

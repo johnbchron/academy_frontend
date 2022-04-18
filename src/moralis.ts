@@ -187,6 +187,7 @@ async function build_admin_dashboard() {
     table_data += `<div class="row">`;
     switch (i.state) {
       case 0: {
+        table_data += "<div class=\"columns-2\">";
         table_data += name_cell(zero_pad(i.id, 6));
         table_data += data_cell("state", "initialized");
         table_data += data_cell("mode", i.academy_mode);
@@ -194,10 +195,13 @@ async function build_admin_dashboard() {
         table_data += data_cell("allowed length", unix_time_to_duration(i.tenure_length));
         table_data += data_cell("initial balance", wei_to_eth(i.initial_derc_supply) + " DERC");
         table_data += data_cell("balance", wei_to_eth(i.current_derc_supply) + " DERC");
+        table_data += "</div><div class=\"columns-1\">";
         table_data += supply_button + cancel_button;
+        table_data += "</div>";
         break;
       }
       case 1: {
+        table_data += "<div class=\"columns-2\">";
         table_data += name_cell(zero_pad(i.id, 6));
         table_data += data_cell("state", "supplied");
         table_data += data_cell("mode", i.academy_mode);
@@ -206,10 +210,13 @@ async function build_admin_dashboard() {
         table_data += data_cell("allowed length", unix_time_to_duration(i.tenure_length));
         table_data += data_cell("initial balance", wei_to_eth(i.initial_derc_supply) + " DERC");
         table_data += data_cell("balance", wei_to_eth(i.current_derc_supply) + " DERC");
+        table_data += "</div><div class=\"columns-1\">";
         table_data += activate_button + deposit_button + withdraw_button + change_mode_button + cancel_button;
+        table_data += "</div>";
         break;
       }
       case 2: {
+        table_data += "<div class=\"columns-2\">";
         table_data += name_cell(zero_pad(i.id, 6));
         table_data += data_cell("state", "active");
         table_data += data_cell("mode", i.academy_mode);
@@ -219,10 +226,13 @@ async function build_admin_dashboard() {
         table_data += data_cell("allowed length", unix_time_to_duration(i.tenure_length));
         table_data += data_cell("initial balance", wei_to_eth(i.initial_derc_supply) + " DERC");
         table_data += data_cell("balance", wei_to_eth(i.current_derc_supply) + " DERC");
+        table_data += "</div><div class=\"columns-1\">";
         table_data += pause_button + deposit_button + withdraw_button + change_mode_button + cancel_button;
+        table_data += "</div>";
         break;
       }
       case 3: {
+        table_data += "<div class=\"columns-2\">";
         table_data += name_cell(zero_pad(i.id, 6));
         table_data += data_cell("state", "paused");
         table_data += data_cell("mode", i.academy_mode);
@@ -232,10 +242,13 @@ async function build_admin_dashboard() {
         table_data += data_cell("allowed length", unix_time_to_duration(i.tenure_length));
         table_data += data_cell("initial balance", wei_to_eth(i.initial_derc_supply) + " DERC");
         table_data += data_cell("balance", wei_to_eth(i.current_derc_supply) + " DERC");
+        table_data += "</div><div class=\"columns-1\">";
         table_data += unpause_button + deposit_button + withdraw_button + change_mode_button + cancel_button;
+        table_data += "</div>";
         break;
       }
       case 4: {
+        table_data += "<div class=\"columns-2\">";
         table_data += name_cell(zero_pad(i.id, 6));
         table_data += data_cell("state", "paused");
         table_data += data_cell("mode", i.academy_mode);
@@ -249,7 +262,9 @@ async function build_admin_dashboard() {
         table_data += data_cell("allowed length", unix_time_to_duration(i.tenure_length));
         table_data += data_cell("initial balance", wei_to_eth(i.initial_derc_supply) + " DERC");
         table_data += data_cell("balance", wei_to_eth(i.current_derc_supply) + " DERC");
+        table_data += "</div><div class=\"columns-1\">";
         table_data += withdraw_button;
+        table_data += "</div>";
         break;
       }
     }
