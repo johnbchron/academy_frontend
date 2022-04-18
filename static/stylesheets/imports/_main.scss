@@ -92,6 +92,11 @@ form, fieldset {
     box-shadow: var(--shadow);
   }
 
+  data {
+    font-size: .75em;
+    color: rgba(0 0 0 / 70%);
+  }
+
   .column {
     color: black;
     flex: 1;
