@@ -304,7 +304,7 @@ table {
     padding: math.div($base-sizing, 3) ($base-sizing * 0.5);
   }
   th {
-    background-color: $rust;
+    background-color: $primary_color;
     color: white;
     border: 1px solid darken($light-grey, 6%);
   }

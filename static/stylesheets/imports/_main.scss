@@ -56,7 +56,7 @@
   }
 
   &__color {
-    background: $rust;
+    background: $primary_color;
     color: white;
     border-radius: $border-radius;
     box-shadow: var(--shadow);
@@ -67,7 +67,7 @@ form, fieldset {
   flex-wrap: wrap;
   gap: math.div($base-sizing, 2);
   text-align: left;
-  background-color: $rust;
+  background-color: $primary_color;
   border-radius: $border-radius;
   padding: $base-sizing;
   color: white;

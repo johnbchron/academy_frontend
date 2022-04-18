@@ -10,6 +10,8 @@ const ACADEMY_CONTRACT_ADDRESS = "0x71C6EC2058175480b035d69D963C268E4CdF7614"// 
 const DERC_CONTRACT_ADDRESS = "0xb35fcbcf1fd489fce02ee146599e893fdcdc60e6"
 const HORSE_CONTRACT_ADDRESS = "0x9d77cb4D8371736e2A2b2bfAa677b7841cDc8fC1";
 
+const CONFIRMATION_WAIT_COUNT = 5;
+
 const serverUrl = "https://qaphg75pwxkt.usemoralis.com:2053/server";
 const appId = "OUdGGX3gU0g6R9J4sfULWxycb21SAirjMt5cBESU";
 
@@ -351,7 +353,7 @@ async function cancel_prompt(id) {
       Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
       const transaction = await cancel_tenure(id);
       Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-      await transaction.wait();
+      await transaction.wait(CONFIRMATION_WAIT_COUNT);
       Swal.fire('cancelled tenure #' + String(id), '', 'success');
       await reload_dashboard();
     }
@@ -391,17 +393,17 @@ async function supply_prompt(id) {
     Swal.fire({ title: 'please sign transaction #1 in your wallet: $DERC approval', showConfirmButton: false });
     const derc_transaction = await approve_derc(ACADEMY_CONTRACT_ADDRESS, relevant_tenure.initial_derc_supply);
     Swal.fire({ title: 'waiting for block confirmation of transaction #1...', showConfirmButton: false });
-    await derc_transaction.wait();
+    await derc_transaction.wait(CONFIRMATION_WAIT_COUNT);
     await Swal.fire({ title: 'approved $DERC', confirmButtonText: 'Next...', icon: 'success'});
     Swal.fire({ title: 'please sign transaction #2 in your wallet: horse approval (#' + String(result.value.horse_id) + ')', showConfirmButton: false });
     const horse_transaction = await approve_horse(ACADEMY_CONTRACT_ADDRESS, result.value.horse_id);
     Swal.fire({ title: 'waiting for block confirmation of transaction #2...', showConfirmButton: false });
-    await horse_transaction.wait();
+    await horse_transaction.wait(CONFIRMATION_WAIT_COUNT);
     await Swal.fire({ title: 'approved horse', confirmButtonText: 'Next...', icon: 'success'});
     Swal.fire({ title: 'please sign transaction #3 in your wallet: asset transfer', showConfirmButton: false });
     const supply_transaction = await supply_tenure(id, result.value.horse_id);
     Swal.fire({ title: 'waiting for block confirmation of transaction #3...', showConfirmButton: false });
-    await supply_transaction.wait();
+    await supply_transaction.wait(CONFIRMATION_WAIT_COUNT);
     Swal.fire({ title: 'supplied tenure', icon: 'success'});
     await reload_dashboard();
   })
@@ -417,7 +419,7 @@ async function activate_prompt(id) {
       Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
       const transaction = await activate_tenure(id);
       Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-      await transaction.wait();
+      await transaction.wait(CONFIRMATION_WAIT_COUNT);
       Swal.fire('activated tenure #' + String(id), '', 'success');
       await reload_dashboard();
     }
@@ -434,7 +436,7 @@ async function pause_prompt(id) {
       Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
       const transaction = await set_paused_tenure(id, true);
       Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-      await transaction.wait();
+      await transaction.wait(CONFIRMATION_WAIT_COUNT);
       Swal.fire('paused tenure #' + String(id), '', 'success');
       await reload_dashboard();
     }
@@ -451,7 +453,7 @@ async function unpause_prompt(id) {
       Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
       const transaction = await set_paused_tenure(id, false);
       Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-      await transaction.wait();
+      await transaction.wait(CONFIRMATION_WAIT_COUNT);
       Swal.fire('unpaused tenure #' + String(id), '', 'success');
       await reload_dashboard();
     }
@@ -487,12 +489,12 @@ async function deposit_prompt(id) {
     Swal.fire({ title: 'please sign transaction #1 in your wallet: $DERC approval', showConfirmButton: false });
     const derc_transaction = await approve_derc(ACADEMY_CONTRACT_ADDRESS, BigInt(result.value.amount) * BigInt(10 ** 18));
     Swal.fire({ title: 'waiting for block confirmation of transaction #1...', showConfirmButton: false });
-    await derc_transaction.wait();
+    await derc_transaction.wait(CONFIRMATION_WAIT_COUNT);
     await Swal.fire({ title: 'approved $DERC', confirmButtonText: 'Next...', icon: 'success'});
     Swal.fire({ title: 'please sign transaction #2 in your wallet: $DERC transfer', showConfirmButton: false });
     const supply_transaction = await deposit_to_tenure(id, BigInt(result.value.amount) * BigInt(10 ** 18));
     Swal.fire({ title: 'waiting for block confirmation of transaction #2...', showConfirmButton: false });
-    await supply_transaction.wait();
+    await supply_transaction.wait(CONFIRMATION_WAIT_COUNT);
     Swal.fire({ title: 'deposited to tenure', icon: 'success'});
     await reload_dashboard();
   })
@@ -530,7 +532,7 @@ async function withdraw_prompt(id) {
     Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
     const transaction = await withdraw_from_tenure(id, result.value.to_address, BigInt(result.value.amount) * BigInt(10 ** 18));
     Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-    await transaction.wait();
+    await transaction.wait(CONFIRMATION_WAIT_COUNT);
     Swal.fire('withdrew ' + String(result.value.amount) + ' $DERC to ' + String(result.value.to_address), '', 'success');
     await reload_dashboard();
   })
@@ -564,7 +566,7 @@ async function change_mode_prompt(id) {
     Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
     const transaction = await change_tenure_mode(id, result.value.mode);
     Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-    await transaction.wait();
+    await transaction.wait(CONFIRMATION_WAIT_COUNT);
     Swal.fire('changed mode to ' + String(result.value.mode), '', 'success');
     await reload_dashboard();
   })
@@ -739,7 +741,7 @@ async function submit_form(event) {
   Swal.fire({ title: 'please sign the transaction in your wallet', showConfirmButton: false });
   const transaction = await initialize_tenure(inputs[0].value, inputs[1].value, BigInt(inputs[2].value) * BigInt(10 ** 18), inputs[3].value);
   Swal.fire({ title: 'waiting for block confirmation...', showConfirmButton: false });
-  await transaction.wait();
+  await transaction.wait(CONFIRMATION_WAIT_COUNT);
   Swal.fire('initialized tenure', '', 'success');
   await reload_dashboard();
 }
