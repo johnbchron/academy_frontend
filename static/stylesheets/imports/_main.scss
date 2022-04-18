@@ -21,13 +21,10 @@
   padding: math.div($base-sizing, 2) math.div($base-sizing, 1);
   font-size: .9em;
 
-  &__rust {
-    background-color: $primary_color;
-    color: white;
-
-    &:hover, &:active {
-      color: white;
-    }
+  &_action {
+    background-color: rgb(229, 229, 229);
+    color: rgb(102, 102, 102);
+    border-radius: 24px;
   }
 }
 
@@ -84,7 +81,7 @@ form, fieldset {
   display: flex;
   flex-direction: row;
   background-color: #fff;
-  box-shadow: 0 0 10px rgb(0 0 0 / 16%);
+  box-shadow: 0 0 4px rgb(0 0 0 / 16%);
   transition: $transition-time;
   border-radius: $border-radius;
   padding: $base-sizing;
@@ -115,10 +112,6 @@ input {
   border: none;
   width: 100%;
   color: black;
-}
-
-.coolfontyoushouldnamethisclasssomethingbetterthankyou {
-  font-family: "Inconsolata", sans-serif;
 }
 
 @media only screen and (min-width: $on-mobile) {
