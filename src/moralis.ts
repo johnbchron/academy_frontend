@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 declare var Moralis: any;
 declare var Swal: any;
 declare var Web3: any;
