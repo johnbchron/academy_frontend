@@ -175,14 +175,14 @@ async function build_admin_dashboard() {
   let index;
   for (index = tenures.length - 1; index >= 0; index--) {
     const i = tenures[index];
-    const cancel_button = `<button class="btn btn_action" onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
-    const supply_button = `<button class="btn btn_action" onclick="javascript:supply_prompt(${i.id})">supply</button>`;
-    const activate_button = `<button class="btn btn_action" onclick="javascript:activate_prompt(${i.id})">activate</button>`;
-    const pause_button = `<button class="btn btn_action" onclick="javascript:pause_prompt(${i.id})">pause</button>`;
-    const unpause_button = `<button class="btn btn_action" onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
-    const deposit_button = `<button class="btn btn_action" onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
-    const withdraw_button = `<button class="btn btn_action" onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
-    const change_mode_button = `<button class="btn btn_action" onclick="javascript:change_mode_prompt(${i.id})">change Mode</button>`;
+    const cancel_button = `<button class="btn btn__action" onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+    const supply_button = `<button class="btn btn__action" onclick="javascript:supply_prompt(${i.id})">supply</button>`;
+    const activate_button = `<button class="btn btn__action" onclick="javascript:activate_prompt(${i.id})">activate</button>`;
+    const pause_button = `<button class="btn btn__action" onclick="javascript:pause_prompt(${i.id})">pause</button>`;
+    const unpause_button = `<button class="btn btn__action" onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
+    const deposit_button = `<button class="btn btn__action" onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
+    const withdraw_button = `<button class="btn btn__action" onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
+    const change_mode_button = `<button class="btn btn__action" onclick="javascript:change_mode_prompt(${i.id})">change Mode</button>`;
 
     table_data += `<div class="row">`;
     switch (i.state) {
@@ -295,8 +295,8 @@ async function build_standard_dashboard() {
 
   for (index = user_tenures.length - 1; index >= 0; index--) {
     const i = user_tenures[index];
-    const cancel_button = `<button class="btn btn_action" onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
-    const supply_button = `<button class="btn btn_action" onclick="javascript:supply_prompt(${i.id})">supply</button>`;
+    const cancel_button = `<button class="btn btn__action" onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+    const supply_button = `<button class="btn btn__action" onclick="javascript:supply_prompt(${i.id})">supply</button>`;
 
     switch (i.state) {
       case 0: {

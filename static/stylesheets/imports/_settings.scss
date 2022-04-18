@@ -31,7 +31,7 @@ $content-width: 900px !default;
 $on-desktop: $content-width+(4*$base-sizing) !default;
 $on-mobile: $content-width+($base-sizing) !default;
 
-$transition-time: 0.1s;
+$transition-time: 0.08s;
 
 @mixin relative-font-size($ratio) {
   font-size: $base-font-size * $ratio;
