@@ -1,11 +1,11 @@
-import 'dotenv/config'
-import { koa } from './components/router'
+import "dotenv/config";
+import { koa } from "./components/router";
 
-const port = parseInt(process.env.HTTP_PORT!) || 3000
-koa.listen(port, process.env.HTTP_HOST)
+const port = parseInt(process.env.HTTP_PORT!) || 3000;
+koa.listen(port, process.env.HTTP_HOST);
 
-for (let route of ['static-pages']) {
-	require('./routes/' + route)?.init?.()
+for (let route of ["static-pages"]) {
+  require("./routes/" + route)?.init?.();
 
-  console.log(`Site running on port ${port}.`)
+  console.log(`Site running on port ${port}.`);
 }

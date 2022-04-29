@@ -24,10 +24,29 @@
   &__action {
     background-color: rgb(229, 229, 229);
     color: rgb(102, 102, 102);
-    border-radius: $border-radius;
+    border-radius: $border-radius * 3;
     height: min-content;
+    padding: math.div($base-sizing, 3) math.div($base-sizing, 2);
     transition: $transition-time;
   }
+}
+
+.clipboard {
+  /*display: block;*/
+  /*margin: 2px;*/
+  padding: 2px;
+  /*border: 1px solid black;*/
+  align-items: normal;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height:28px;
+  /*right: 4px;
+  top: 4px;*/
+}
+
+svg {
+  margin: 2px;
+  display: inline-block;
 }
 
 .section {
@@ -96,7 +115,7 @@ form, fieldset {
   box-shadow: 0 0 4px rgb(0 0 0 / 16%);
   transition: $transition-time;
   border-radius: $border-radius;
-  padding: $base-sizing;
+  padding: math.div($base-sizing, math.div(4, 3));
   width: 100%;
   margin: 0;
   grid-gap: $base-sizing 0;
@@ -125,6 +144,10 @@ form, fieldset {
   data {
     font-size: .9em;
     color: rgba(0 0 0 / 70%);
+    
+    &.green_text {
+      color: $green_color;
+    }
   }
 
   .column {
@@ -137,6 +160,11 @@ form, fieldset {
       justify-content: end;
     }
   }
+}
+
+.swal2-container {
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font-size: 1.5rem;
 }
 
 input {
