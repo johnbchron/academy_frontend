@@ -14,8 +14,8 @@ const HORSE_CONTRACT_ADDRESS = "0x9d77cb4D8371736e2A2b2bfAa677b7841cDc8fC1";
 
 const CONFIRMATION_WAIT_COUNT = 5;
 
-const serverUrl = "https://qaphg75pwxkt.usemoralis.com:2053/server";
-const appId = "OUdGGX3gU0g6R9J4sfULWxycb21SAirjMt5cBESU";
+const serverUrl = "https://aod8mmxpyj7j.usemoralis.com:2053/server";
+const appId = "a6ZCX6oLWMCQOiv1LmfmpCmfTwp5FfWz4V3EoS2i";
 
 var admin;
 var tenures;
