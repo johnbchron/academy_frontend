@@ -325,7 +325,7 @@ async function build_admin_dashboard() {
           table_data += data_cell("START TIME", "never");
         }
         table_data += data_cell(
-          "PERIOD",
+          "DURATION",
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
@@ -471,7 +471,7 @@ async function build_standard_dashboard() {
           table_data += data_cell("START TIME", "never");
         }
         table_data += data_cell(
-          "PERIOD",
+          "DURATION",
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
