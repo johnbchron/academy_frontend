@@ -351,10 +351,7 @@ async function build_standard_dashboard() {
     }
   }
 
-  let table_data =
-    "<tr><th>ID</th><th>state</th><th>mode</th><th>owner</th><th>horse ID</th><th>start time</th><th>approved length</th><th>initial balance</th><th>balance</th><th>actions</th></tr>";
-
-  const separator = "</td><td>";
+  let table_data = "";
 
   for (index = user_tenures.length - 1; index >= 0; index--) {
     const i = tenures[index];
