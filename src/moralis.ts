@@ -220,6 +220,8 @@ async function build_admin_dashboard() {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("HORSE", "none");
+        table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
           "PERIOD",
           unix_time_to_duration(i.tenure_length)
@@ -238,6 +240,7 @@ async function build_admin_dashboard() {
         table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
+        table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
           "PERIOD",
           unix_time_to_duration(i.tenure_length)
@@ -381,6 +384,8 @@ async function build_standard_dashboard() {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("HORSE", "none");
+        table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
           "PERIOD",
           unix_time_to_duration(i.tenure_length)
@@ -399,6 +404,7 @@ async function build_standard_dashboard() {
         table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
+        table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
           "PERIOD",
           unix_time_to_duration(i.tenure_length)
