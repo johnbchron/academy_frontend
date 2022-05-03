@@ -77,13 +77,27 @@ async function route(page: "login" | "authenticate") {
           await build_standard_dashboard();
         }
       })
-      .catch(function (error) {
+      .catch(async function (error) {
         console.log(error);
         pages.landing.style.display = "block";
         const button: any = static_content.login_button;
         button.disabled = false;
-        static_content.tip.innerHTML =
-          "Login failed. Please make sure MetaMask is on the right network and try again.";
+
+        await Moralis.enableWeb3()
+        const web3 = new Web3(Moralis.provider);
+        const network_id = await web3.eth.getChainId();
+
+        if (error.code == 4001) {
+          static_content.tip.innerHTML =
+            "Login failed. Please sign the message in MetaMask to log in. Click Login to try again.";
+        } else if (network_id != 137) {
+          static_content.tip.innerHTML =
+            `Login failed. Please switch to the Polygon network in MetaMask. If you haven't added the Polygon network to your Metamask already, follow the instructions <a href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer noopener">here</a>.`;
+        } else {
+          static_content.tip.innerHTML =
+            "Login failed. Please make sure MetaMask is on the right network and try again.";
+        }
+
         pages.admin.style.display = "none";
         pages.standard.style.display = "none";
       });
@@ -1067,6 +1081,7 @@ async function authenticate() {
   await Moralis.authenticate({
     signingMessage: "SMR Academy Login",
   });
+
 }
 
 function isNumber(n) {
