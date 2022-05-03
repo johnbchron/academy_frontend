@@ -349,9 +349,6 @@ async function build_admin_dashboard() {
 }
 
 async function build_standard_dashboard() {
-  static_content.standard_table.innerHTML =
-    "<tr><th>loading tenure data</th><tr>";
-
   let index;
 
   tenures = await fetch_all_tenures();
