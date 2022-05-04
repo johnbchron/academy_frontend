@@ -188,11 +188,12 @@ function name_cell(column_name) {
 }
 
 function clipboard_button(input) {
-  return (
-    `<button class="clipboard" data-clipboard-text="` +
-    String(input) +
-    `"><svg height="16" viewBox="0 0 16 16" version="1.1" width="16" class="m-2"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg></button>`
-  );
+  // return (
+  //   `<button class="clipboard" data-clipboard-text="` +
+  //   String(input) +
+  //   `">copy</button>`
+  // );
+  return `<svg class="clipboard" data-clipboard-text="` + String(input) + `" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H1H9V1H1V9H0V0ZM2 2H11V11H2V2ZM3 3H10V10H3V3Z" fill="rgb(100,100,100)"></path></svg>`;
   // return `<img class="clipboard" width="13" src="https://clipboardjs.com/assets/images/clippy.svg" data-clipboard-text="` + String(input) + `" alt="copy to clipboard">`
   // return `<button class="clipboard" data-clipboard-text="` + String(input) + `"><img class="clippy" width="13" src="https://clipboardjs.com/assets/images/clippy.svg" alt="copy to clipboard"></button>`
 }
@@ -219,7 +220,8 @@ async function build_admin_dashboard() {
       case 0: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "none");
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
@@ -238,7 +240,8 @@ async function build_admin_dashboard() {
       case 1: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
@@ -262,7 +265,8 @@ async function build_admin_dashboard() {
       case 2: {
         table_data += '<div class="columns-2">';
         table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell(
           "START TIME",
@@ -289,7 +293,8 @@ async function build_admin_dashboard() {
       case 3: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell(
           "START TIME",
@@ -316,7 +321,8 @@ async function build_admin_dashboard() {
       case 4: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "cancelled");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         if (i.start_time > 0) {
           table_data += data_cell("HORSE", "#" + i.horse_id);
           table_data += data_cell(
@@ -383,7 +389,8 @@ async function build_standard_dashboard() {
       case 0: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "none");
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
@@ -402,7 +409,8 @@ async function build_standard_dashboard() {
       case 1: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
@@ -421,7 +429,8 @@ async function build_standard_dashboard() {
       case 2: {
         table_data += '<div class="columns-2">';
         table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell(
           "START TIME",
@@ -443,7 +452,8 @@ async function build_standard_dashboard() {
       case 3: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell(
           "START TIME",
@@ -465,7 +475,8 @@ async function build_standard_dashboard() {
       case 4: {
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "cancelled");
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner));
+        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         if (i.start_time > 0) {
           table_data += data_cell("HORSE", "#" + i.horse_id);
           table_data += data_cell(
@@ -492,6 +503,8 @@ async function build_standard_dashboard() {
   }
 
   static_content.standard_table.innerHTML = table_data;
+  
+  new ClipboardJS(".clipboard");
 }
 
 async function cancel_prompt(id) {
@@ -1141,6 +1154,13 @@ function unix_time_to_timestamp(input) {
   var d = new Date(input * 1000);
   // return d.getDate() + '/' + (d.getMonth()) + '/' + d.getFullYear() + " " + d.getHours() + ':' + d.getMinutes();
   return d.toLocaleTimeString("en-US") + " " + d.toLocaleDateString("en-US");
+}
+
+function get_academy_mode_description(mode) {
+  if (mode == 0) {
+    return "adaptive training";
+  }
+  return "unknown mode";
 }
 
 function zero_pad(str, len) {

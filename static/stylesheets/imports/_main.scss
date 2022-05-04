@@ -33,13 +33,13 @@
 
 .clipboard {
   /*display: block;*/
-  /*margin: 2px;*/
-  padding: 2px;
+  /*margin: 4px;*/
+  /*padding: 2px;*/
   /*border: 1px solid black;*/
-  align-items: normal;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  height:28px;
+  /*align-items: normal;*/
+  /*overflow-x: hidden;*/
+  /*overflow-y: hidden;*/
+  /*height:28px;*/
   /*right: 4px;
   top: 4px;*/
 }
@@ -124,7 +124,7 @@ form, fieldset {
   .columns {
     &-2 {
       display: flex;
-      flex: 2;
+      flex: 3;
       gap: $base-sizing;
     }
 
