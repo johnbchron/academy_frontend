@@ -229,7 +229,7 @@ async function build_admin_dashboard() {
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
-          "BALANCE",
+          "STARTING FUND",
           wei_to_eth(i.current_derc_supply) + " DERC"
         );
         table_data += '</div><div class="columns-1">';
@@ -398,7 +398,7 @@ async function build_standard_dashboard() {
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
-          "BALANCE",
+          "STARTING FUND",
           wei_to_eth(i.current_derc_supply) + " DERC"
         );
         table_data += '</div><div class="columns-1">';
@@ -503,7 +503,7 @@ async function build_standard_dashboard() {
   }
 
   static_content.standard_table.innerHTML = table_data;
-  
+
   new ClipboardJS(".clipboard");
 }
 
