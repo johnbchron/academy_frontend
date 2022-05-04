@@ -230,7 +230,7 @@ async function build_admin_dashboard() {
         );
         table_data += data_cell(
           "STARTING FUND",
-          wei_to_eth(i.current_derc_supply) + " DERC"
+          wei_to_eth(i.initial_derc_supply) + " DERC"
         );
         table_data += '</div><div class="columns-1">';
         table_data += supply_button + cancel_button;
@@ -399,7 +399,7 @@ async function build_standard_dashboard() {
         );
         table_data += data_cell(
           "STARTING FUND",
-          wei_to_eth(i.current_derc_supply) + " DERC"
+          wei_to_eth(i.initial_derc_supply) + " DERC"
         );
         table_data += '</div><div class="columns-1">';
         table_data += supply_button + cancel_button;
