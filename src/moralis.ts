@@ -55,8 +55,19 @@ async function route(page: "login" | "authenticate") {
     const button: any = static_content.login_button;
     button.disabled = false;
 
-    static_content.tip.innerHTML =
-      "This will initiate a transaction in MetaMask to allow you to log in.";
+    await Moralis.enableWeb3();
+    const web3 = new Web3(Moralis.provider);
+    const network_id = await web3.eth.getChainId();
+
+    console.log(network_id);
+
+    // if (network_id != 137) {
+    //   static_content.tip.innerHTML =
+    //     `Please switch to the Polygon network in MetaMask before logging in.`;
+    // } else {
+      static_content.tip.innerHTML =
+        "Please sign with your wallet to log in.";
+    // }
 
     pages.landing.style.display = "block";
     pages.admin.style.display = "none";
@@ -83,20 +94,21 @@ async function route(page: "login" | "authenticate") {
         const button: any = static_content.login_button;
         button.disabled = false;
 
-        await Moralis.enableWeb3()
+        await Moralis.enableWeb3();
         const web3 = new Web3(Moralis.provider);
         const network_id = await web3.eth.getChainId();
 
         if (error.code == 4001) {
           static_content.tip.innerHTML =
             "Login failed. Please sign the message in MetaMask to log in. Click Login to try again.";
-        } else if (network_id != 137) {
-          static_content.tip.innerHTML =
-            `Login failed. Please switch to the Polygon network in MetaMask. If you haven't added the Polygon network to your Metamask already, follow the instructions <a href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer noopener">here</a>.`;
-        } else {
-          static_content.tip.innerHTML =
-            "Login failed. Please make sure MetaMask is on the right network and try again.";
         }
+        // } else if (network_id != 137) {
+        //   static_content.tip.innerHTML =
+        //     `Login failed. Please switch to the Polygon network in MetaMask.`;
+        // } else {
+        //   static_content.tip.innerHTML =
+        //     "Login failed. Please make sure MetaMask is on the right network and try again.";
+        // }
 
         pages.admin.style.display = "none";
         pages.standard.style.display = "none";
@@ -199,6 +211,8 @@ function clipboard_button(input) {
 }
 
 async function build_admin_dashboard() {
+  static_content.admin_table.innerHTML = "<h4>loading tenures...</h4>";
+
   tenures = await fetch_all_tenures();
 
   let table_data = "";
@@ -358,6 +372,8 @@ async function build_admin_dashboard() {
 }
 
 async function build_standard_dashboard() {
+  static_content.admin_table.innerHTML = "<h4>loading tenures...</h4>";
+
   let index;
 
   tenures = await fetch_all_tenures();
@@ -1094,6 +1110,28 @@ async function isAdmin(user): Promise<Boolean> {
 }
 
 async function authenticate() {
+  await Moralis.enableWeb3();
+  const web3 = new Web3(Moralis.provider);
+
+  const currentChainId = web3.eth.getChainId();
+  
+  if (currentChainId !== 137) {
+    try {
+      await web3.currentProvider.request({
+        method: 'wallet_switchEthereumChain',
+          params: [{ chainId: Web3.utils.toHex(137) }],
+        });
+    } catch (switchError: any) {
+      // This error code indicates that the chain has not been added to MetaMask.
+      if (switchError.code === 4902) {
+        static_content.tip.innerHTML =
+          `Please add the Polygon Mainnet network to your metamask. Instructions can be found <a href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer noopener">here</a>.`;
+        console.log("user doesn't have target network")
+        return;
+      }
+    }
+  }
+
   await Moralis.authenticate({
     signingMessage: "SMR Academy Login",
   });
