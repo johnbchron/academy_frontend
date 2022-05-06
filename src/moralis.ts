@@ -55,19 +55,8 @@ async function route(page: "login" | "authenticate") {
     const button: any = static_content.login_button;
     button.disabled = false;
 
-    await Moralis.enableWeb3();
-    const web3 = new Web3(Moralis.provider);
-    const network_id = await web3.eth.getChainId();
-
-    console.log(network_id);
-
-    // if (network_id != 137) {
-    //   static_content.tip.innerHTML =
-    //     `Please switch to the Polygon network in MetaMask before logging in.`;
-    // } else {
-      static_content.tip.innerHTML =
-        "Please sign with your wallet to log in.";
-    // }
+    static_content.tip.innerHTML =
+      "Please sign with your wallet to log in.";
 
     pages.landing.style.display = "block";
     pages.admin.style.display = "none";
