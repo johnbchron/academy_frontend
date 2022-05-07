@@ -49,10 +49,14 @@ svg {
   display: inline-block;
 }
 
+.centered {
+  justify-content: flex-start;
+}
+
 .section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex: 1;
   width: 100%;
@@ -63,6 +67,15 @@ svg {
 
   h5 {
     margin: 0;
+  }
+
+  &__centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
   }
 
   &__text {
