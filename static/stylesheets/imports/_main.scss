@@ -31,6 +31,14 @@
   }
 }
 
+.user-row {
+  margin: 0;
+}
+
+.address-line {
+  color: $grey-color;
+}
+
 .clipboard {
   /*display: block;*/
   /*margin: 4px;*/
@@ -54,12 +62,15 @@ svg {
 }
 
 .section {
-  display: flex;
+  padding: $base-sizing/2 10vw;
+  z-index: 5;
+  position: relative;
+  /*display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex: 1;
-  width: 100%;
+  width: 100%;*/
 
   h5, .tip {
     color: rgba(255 255 255 / 75%);
@@ -79,9 +90,11 @@ svg {
   }
 
   &__text {
-    width: 100%;
+    background-color: #D6D6D6;
+    flex: 1;
+    min-width: min($base-sizing*15, 100%);
     padding: $base-sizing;
-    /*max-width: min($base-sizing*40, 100%;*/
+    border-radius: $border-radius;
   }
 
   &__thin_text {

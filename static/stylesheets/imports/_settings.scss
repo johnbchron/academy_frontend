@@ -7,9 +7,9 @@ $small-font-size:  $base-font-size * 0.875 !default;
 $base-line-height: 1.5 !default;
 
 $base-sizing: 30px !default;
-$border-radius: $base-sizing*0.2 !default;
+$border-radius: $base-sizing*0.5 !default;
 
-$grey-color: hsl(0,0%,70%) !default;
+$grey-color: hsl(0,0%,50%) !default;
 $light-grey: hsl(0,0%,85%) !default;
 $primary_color: #BA3F1D;
 $secondary_color: #808782;
@@ -62,7 +62,7 @@ $transition-time: 0.2s;
   --background-color: rgb(241, 241, 241);
 	--text-color: #000;
 	--grey-text-color: #666;
-  --shadow: 0 0 20px rgb(0 0 0 / 16%);
+  --shadow: 0 0 20px rgb(0 0 0 / 32%);
 }
 
 

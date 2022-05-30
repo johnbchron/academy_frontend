@@ -32,6 +32,8 @@ const static_content = {
   tip: document.getElementById("tip")!,
   standard_table: document.getElementById("standard-table")!,
   form: document.getElementById("form")!,
+  admin_address_line: document.getElementById("admin-address-line")!,
+  user_address_line: document.getElementById("user-address-line")!
 };
 
 initialize();
@@ -69,11 +71,13 @@ async function route(page: "login" | "authenticate") {
           pages.landing.style.display = "none";
           pages.admin.style.display = "block";
           pages.standard.style.display = "none";
+          static_content.admin_address_line.innerHTML = Moralis.User.current().get("ethAddress")
           await build_admin_dashboard();
         } else {
           pages.landing.style.display = "none";
           pages.admin.style.display = "none";
           pages.standard.style.display = "block";
+          static_content.user_address_line.innerHTML = Moralis.User.current().get("ethAddress")
           await build_standard_dashboard();
         }
       })

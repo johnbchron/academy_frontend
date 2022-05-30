@@ -1,26 +1,30 @@
-.columns
-  .section
-    .section__text
-      h1 Admin Dashboard
+.section
+  .section__text
+    h1 SMR Academy Admin Dashboard
+    p.user-row
+      | Admin: 
+      span.address-line#admin-address-line address retrieval failed
 
-    .section__text
-      h2 Tenure Information
-      #admin-table.vr.rows
-        //- .row
-          .column
-            p Example Contract
-          .column
-            p Status
-          .column
-            p Balance
-          .column.column__right
-            <button class="btn btn__action">Example</button>
-      
-    .section__text
-      h2 Initialize Tenure
-      form(method="post")#form
-        input(name="horse_owner", type="text", placeholder="horse owner (address)")
-        input(name="academy_mode", type="number", placeholder="academy mode")
-        input(name="initial_supply", type="number", placeholder="initial $DERC supply")
-        input(name="tenure_length", type="number", placeholder="length (in seconds)")
-        input(type="submit" value="initialize tenure" class="btn")
+.section
+  .section__text
+    h2 Tenure Information
+    #admin-table.vr.rows
+      //- .row
+        .column
+          p Example Contract
+        .column
+          p Status
+        .column
+          p Balance
+        .column.column__right
+          <button class="btn btn__action">Example</button>
+  
+.section
+  .section__text
+    h2 Initialize Tenures
+    form(method="post")#form.vr
+      input(name="horse_owner", type="text", placeholder="horse owner (address)")
+      input(name="academy_mode", type="number", placeholder="academy mode")
+      input(name="initial_supply", type="number", placeholder="initial $DERC supply")
+      input(name="tenure_length", type="number", placeholder="length (in seconds)")
+      input(type="submit" value="initialize tenure" class="btn")
