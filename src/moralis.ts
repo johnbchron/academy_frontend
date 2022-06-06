@@ -382,133 +382,138 @@ async function build_standard_dashboard() {
 
   let table_data = "";
 
-  for (index = user_tenures.length - 1; index >= 0; index--) {
-    const i = tenures[index];
-    const cancel_button = `<button class="btn btn__action" onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
-    const supply_button = `<button class="btn btn__action" onclick="javascript:supply_prompt(${i.id})">supply</button>`;
-    const activate_button = `<button class="btn btn__action" onclick="javascript:activate_prompt(${i.id})">activate</button>`;
-    const pause_button = `<button class="btn btn__action" onclick="javascript:pause_prompt(${i.id})">pause</button>`;
-    const unpause_button = `<button class="btn btn__action" onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
-    const deposit_button = `<button class="btn btn__action" onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
-    const withdraw_button = `<button class="btn btn__action" onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
-    const change_mode_button = `<button class="btn btn__action" onclick="javascript:change_mode_prompt(${i.id})">change mode</button>`;
+  if (user_tenures.length > 0) {
+    for (index = user_tenures.length - 1; index >= 0; index--) {
+      const i = tenures[index];
+      const cancel_button = `<button class="btn btn__action" onclick="javascript:cancel_prompt(${i.id})">cancel</button>`;
+      const supply_button = `<button class="btn btn__action" onclick="javascript:supply_prompt(${i.id})">supply</button>`;
+      const activate_button = `<button class="btn btn__action" onclick="javascript:activate_prompt(${i.id})">activate</button>`;
+      const pause_button = `<button class="btn btn__action" onclick="javascript:pause_prompt(${i.id})">pause</button>`;
+      const unpause_button = `<button class="btn btn__action" onclick="javascript:unpause_prompt(${i.id})">unpause</button>`;
+      const deposit_button = `<button class="btn btn__action" onclick="javascript:deposit_prompt(${i.id})">deposit</button>`;
+      const withdraw_button = `<button class="btn btn__action" onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
+      const change_mode_button = `<button class="btn btn__action" onclick="javascript:change_mode_prompt(${i.id})">change mode</button>`;
 
-    table_data += `<div class="row">`;
-    switch (i.state) {
-      case 0: {
-        table_data += '<div class="columns-2">';
-        table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
-        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "none");
-        table_data += data_cell("START TIME", "n/a");
-        table_data += data_cell(
-          "PERIOD",
-          unix_time_to_duration(i.tenure_length)
-        );
-        table_data += data_cell(
-          "STARTING FUND",
-          wei_to_eth(i.initial_derc_supply) + " DERC"
-        );
-        table_data += '</div><div class="columns-1">';
-        table_data += supply_button + cancel_button;
-        table_data += "</div>";
-        break;
-      }
-      case 1: {
-        table_data += '<div class="columns-2">';
-        table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
-        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "#" + i.horse_id);
-        table_data += data_cell("START TIME", "n/a");
-        table_data += data_cell(
-          "PERIOD",
-          unix_time_to_duration(i.tenure_length)
-        );
-        table_data += data_cell(
-          "BALANCE",
-          wei_to_eth(i.current_derc_supply) + " DERC"
-        );
-        table_data += '</div><div class="columns-1">';
-        table_data += cancel_button;
-        table_data += "</div>";
-        break;
-      }
-      case 2: {
-        table_data += '<div class="columns-2">';
-        table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
-        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "#" + i.horse_id);
-        table_data += data_cell(
-          "START TIME",
-          unix_time_to_timestamp(i.start_time)
-        );
-        table_data += data_cell(
-          "PERIOD",
-          unix_time_to_duration(i.tenure_length)
-        );
-        table_data += data_cell(
-          "BALANCE",
-          wei_to_eth(i.current_derc_supply) + " DERC"
-        );
-        table_data += '</div><div class="columns-1">';
-        table_data += cancel_button;
-        table_data += "</div>";
-        break;
-      }
-      case 3: {
-        table_data += '<div class="columns-2">';
-        table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
-        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "#" + i.horse_id);
-        table_data += data_cell(
-          "START TIME",
-          unix_time_to_timestamp(i.start_time)
-        );
-        table_data += data_cell(
-          "PERIOD",
-          unix_time_to_duration(i.tenure_length)
-        );
-        table_data += data_cell(
-          "BALANCE",
-          wei_to_eth(i.current_derc_supply) + " DERC"
-        );
-        table_data += '</div><div class="columns-1">';
-        table_data += cancel_button;
-        table_data += "</div>";
-        break;
-      }
-      case 4: {
-        table_data += '<div class="columns-2">';
-        table_data += data_cell("#" + zero_pad(i.id, 4), "cancelled");
-        table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
-        table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        if (i.start_time > 0) {
+      table_data += `<div class="row">`;
+      switch (i.state) {
+        case 0: {
+          table_data += '<div class="columns-2">';
+          table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
+          table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+          table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
+          table_data += data_cell("HORSE", "none");
+          table_data += data_cell("START TIME", "n/a");
+          table_data += data_cell(
+            "PERIOD",
+            unix_time_to_duration(i.tenure_length)
+          );
+          table_data += data_cell(
+            "STARTING FUND",
+            wei_to_eth(i.initial_derc_supply) + " DERC"
+          );
+          table_data += '</div><div class="columns-1">';
+          table_data += supply_button + cancel_button;
+          table_data += "</div>";
+          break;
+        }
+        case 1: {
+          table_data += '<div class="columns-2">';
+          table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
+          table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+          table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
+          table_data += data_cell("HORSE", "#" + i.horse_id);
+          table_data += data_cell("START TIME", "n/a");
+          table_data += data_cell(
+            "PERIOD",
+            unix_time_to_duration(i.tenure_length)
+          );
+          table_data += data_cell(
+            "BALANCE",
+            wei_to_eth(i.current_derc_supply) + " DERC"
+          );
+          table_data += '</div><div class="columns-1">';
+          table_data += cancel_button;
+          table_data += "</div>";
+          break;
+        }
+        case 2: {
+          table_data += '<div class="columns-2">';
+          table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
+          table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+          table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
           table_data += data_cell("HORSE", "#" + i.horse_id);
           table_data += data_cell(
             "START TIME",
             unix_time_to_timestamp(i.start_time)
           );
-        } else {
-          table_data += data_cell("HORSE", "none");
-          table_data += data_cell("START TIME", "never");
+          table_data += data_cell(
+            "PERIOD",
+            unix_time_to_duration(i.tenure_length)
+          );
+          table_data += data_cell(
+            "BALANCE",
+            wei_to_eth(i.current_derc_supply) + " DERC"
+          );
+          table_data += '</div><div class="columns-1">';
+          table_data += cancel_button;
+          table_data += "</div>";
+          break;
         }
-        table_data += data_cell(
-          "DURATION",
-          unix_time_to_duration(i.tenure_length)
-        );
-        table_data += data_cell(
-          "BALANCE",
-          wei_to_eth(i.current_derc_supply) + " DERC"
-        );
-        table_data += '</div><div class="columns-1"></div>';
-        break;
+        case 3: {
+          table_data += '<div class="columns-2">';
+          table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
+          table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+          table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
+          table_data += data_cell("HORSE", "#" + i.horse_id);
+          table_data += data_cell(
+            "START TIME",
+            unix_time_to_timestamp(i.start_time)
+          );
+          table_data += data_cell(
+            "PERIOD",
+            unix_time_to_duration(i.tenure_length)
+          );
+          table_data += data_cell(
+            "BALANCE",
+            wei_to_eth(i.current_derc_supply) + " DERC"
+          );
+          table_data += '</div><div class="columns-1">';
+          table_data += cancel_button;
+          table_data += "</div>";
+          break;
+        }
+        case 4: {
+          table_data += '<div class="columns-2">';
+          table_data += data_cell("#" + zero_pad(i.id, 4), "cancelled");
+          table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
+          table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
+          if (i.start_time > 0) {
+            table_data += data_cell("HORSE", "#" + i.horse_id);
+            table_data += data_cell(
+              "START TIME",
+              unix_time_to_timestamp(i.start_time)
+            );
+          } else {
+            table_data += data_cell("HORSE", "none");
+            table_data += data_cell("START TIME", "never");
+          }
+          table_data += data_cell(
+            "DURATION",
+            unix_time_to_duration(i.tenure_length)
+          );
+          table_data += data_cell(
+            "BALANCE",
+            wei_to_eth(i.current_derc_supply) + " DERC"
+          );
+          table_data += '</div><div class="columns-1"></div>';
+          break;
+        }
       }
-    }
     table_data += `</div>`;
+    } 
+  }
+  else {
+    table_data = `<div>You currently have no enrollments. Navigate to <a href="https://smracing.io" target="_blank" rel="noreferrer noopener">smracing.io</a> to enroll.</div>`;
   }
 
   static_content.standard_table.innerHTML = table_data;
