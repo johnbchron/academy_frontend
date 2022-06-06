@@ -751,7 +751,7 @@ async function deposit_prompt(id) {
     });
     const derc_transaction = await approve_derc(
       ACADEMY_CONTRACT_ADDRESS,
-      BigInt(result.value.amount) * BigInt(10 ** 18)
+      BigInt(result.value.amount * (10 ** 18))
     );
     Swal.fire({
       title: "waiting for block confirmation of transaction #1...",
@@ -769,7 +769,7 @@ async function deposit_prompt(id) {
     });
     const supply_transaction = await deposit_to_tenure(
       id,
-      BigInt(result.value.amount) * BigInt(10 ** 18)
+      BigInt(result.value.amount * (10 ** 18))
     );
     Swal.fire({
       title: "waiting for block confirmation of transaction #2...",
@@ -818,7 +818,7 @@ async function withdraw_prompt(id) {
     const transaction = await withdraw_from_tenure(
       id,
       result.value.to_address,
-      BigInt(result.value.amount) * BigInt(10 ** 18)
+      BigInt(result.value.amount * (10 ** 18))
     );
     Swal.fire({
       title: "waiting for block confirmation...",
@@ -1075,7 +1075,7 @@ async function submit_form(event) {
   const transaction = await initialize_tenure(
     inputs[0].value,
     inputs[1].value,
-    BigInt(inputs[2].value) * BigInt(10 ** 18),
+    BigInt(inputs[2].value * (10 ** 18)),
     inputs[3].value
   );
   Swal.fire({
