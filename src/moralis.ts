@@ -8,7 +8,7 @@ const ACADEMY_CONTRACT_ABI = [{"inputs":[],"stateMutability":"nonpayable","type"
 const ERC20_CONTRACT_ABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"}];
 const ERC721_CONTRACT_ABI = [{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}];
 
-const ACADEMY_CONTRACT_ADDRESS = "0x23661B626CBF91CedC7752778F93e472a5502F5e"; // "0x3930f79b70aD5BC4605ac2db04872BE9D79c6ce4";
+const ACADEMY_CONTRACT_ADDRESS = "0x9877AF1D493579E2E2d33d36052436dC42B7bD2A";
 const DERC_CONTRACT_ADDRESS = "0xb35fcbcf1fd489fce02ee146599e893fdcdc60e6";
 const HORSE_CONTRACT_ADDRESS = "0x9d77cb4D8371736e2A2b2bfAa677b7841cDc8fC1";
 
@@ -232,7 +232,7 @@ async function build_admin_dashboard() {
         table_data += data_cell("HORSE", "none");
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
-          "PERIOD",
+          "MAX DURATION",
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
@@ -252,7 +252,7 @@ async function build_admin_dashboard() {
         table_data += data_cell("HORSE", "#" + i.horse_id);
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
-          "PERIOD",
+          "MAX DURATION",
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
@@ -280,7 +280,7 @@ async function build_admin_dashboard() {
           unix_time_to_timestamp(i.start_time)
         );
         table_data += data_cell(
-          "PERIOD",
+          "MAX DURATION",
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
@@ -308,7 +308,7 @@ async function build_admin_dashboard() {
           unix_time_to_timestamp(i.start_time)
         );
         table_data += data_cell(
-          "PERIOD",
+          "MAX DURATION",
           unix_time_to_duration(i.tenure_length)
         );
         table_data += data_cell(
@@ -404,7 +404,7 @@ async function build_standard_dashboard() {
           table_data += data_cell("HORSE", "none");
           table_data += data_cell("START TIME", "n/a");
           table_data += data_cell(
-            "PERIOD",
+            "MAX DURATION",
             unix_time_to_duration(i.tenure_length)
           );
           table_data += data_cell(
@@ -424,7 +424,7 @@ async function build_standard_dashboard() {
           table_data += data_cell("HORSE", "#" + i.horse_id);
           table_data += data_cell("START TIME", "n/a");
           table_data += data_cell(
-            "PERIOD",
+            "MAX DURATION",
             unix_time_to_duration(i.tenure_length)
           );
           table_data += data_cell(
@@ -447,7 +447,7 @@ async function build_standard_dashboard() {
             unix_time_to_timestamp(i.start_time)
           );
           table_data += data_cell(
-            "PERIOD",
+            "MAX DURATION",
             unix_time_to_duration(i.tenure_length)
           );
           table_data += data_cell(
@@ -470,7 +470,7 @@ async function build_standard_dashboard() {
             unix_time_to_timestamp(i.start_time)
           );
           table_data += data_cell(
-            "PERIOD",
+            "MAX DURATION",
             unix_time_to_duration(i.tenure_length)
           );
           table_data += data_cell(
