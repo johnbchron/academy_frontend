@@ -1195,6 +1195,8 @@ function unix_time_to_timestamp(input) {
 function get_academy_mode_description(mode) {
   if (mode == 0) {
     return "adaptive training";
+  } else if (mode == 1) {
+    return "full assessment (10 races)"
   }
   return "unknown mode";
 }
