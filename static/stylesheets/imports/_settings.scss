@@ -11,9 +11,9 @@ $border-radius: $base-sizing*0.5 !default;
 
 $grey-color: hsl(0,0%,50%) !default;
 $light-grey: hsl(0,0%,85%) !default;
-$primary_color: #BA3F1D;
-$secondary_color: #808782;
-$tertiary_color: #0D1F22;
+$primary_color: #0F1934;
+$secondary_color: darken($primary-color, 3%);
+$tertiary_color: #EE7B00;
 $green_color: rgb(30 219 137);
 
 $base-sizing: 30px;
