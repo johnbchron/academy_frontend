@@ -134,8 +134,10 @@ h1, h2, h3, h4, h5, h6 {
  */
 
 a {
-  color: #80a6ff;
+  color: var(--text-color);
+  text-decoration: underline;
   text-underline-offset: 3px;
+  transition: $transition-time;
   
   &:hover {
     color: var(--text-color);

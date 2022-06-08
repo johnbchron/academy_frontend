@@ -249,7 +249,7 @@ async function build_admin_dashboard() {
         table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "#" + i.horse_id);
+        table_data += data_cell("HORSE", `<a href="https://www.derace.com/horse/` + i.horse_id + `" target="_blank">#` + i.horse_id + `</a>`);
         table_data += data_cell("START TIME", "n/a");
         table_data += data_cell(
           "MAX DURATION",
@@ -274,7 +274,7 @@ async function build_admin_dashboard() {
         table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "#" + i.horse_id);
+        table_data += data_cell("HORSE", `<a href="https://www.derace.com/horse/` + i.horse_id + `" target="_blank">#` + i.horse_id + `</a>`);
         table_data += data_cell(
           "START TIME",
           unix_time_to_timestamp(i.start_time)
@@ -302,7 +302,7 @@ async function build_admin_dashboard() {
         table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
-        table_data += data_cell("HORSE", "#" + i.horse_id);
+        table_data += data_cell("HORSE", `<a href="https://www.derace.com/horse/` + i.horse_id + `" target="_blank">#` + i.horse_id + `</a>`);
         table_data += data_cell(
           "START TIME",
           unix_time_to_timestamp(i.start_time)
@@ -331,7 +331,7 @@ async function build_admin_dashboard() {
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
         table_data += data_cell("OWNER", abbreviate_address(i.horse_owner) + clipboard_button(i.horse_owner));
         if (i.start_time > 0) {
-          table_data += data_cell("HORSE", "#" + i.horse_id);
+          table_data += data_cell("HORSE", `<a href="https://www.derace.com/horse/` + i.horse_id + `" target="_blank">#` + i.horse_id + `</a>`);
           table_data += data_cell(
             "START TIME",
             unix_time_to_timestamp(i.start_time)
@@ -1197,6 +1197,8 @@ function get_academy_mode_description(mode) {
     return "adaptive training";
   } else if (mode == 1) {
     return "full assessment (10 races)"
+  } else if (mode >= 100) {
+    return "manual"
   }
   return "unknown mode";
 }
