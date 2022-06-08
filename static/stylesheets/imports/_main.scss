@@ -62,7 +62,7 @@ svg {
 }
 
 .section {
-  padding: $base-sizing/2 10vw;
+  padding: math.div($base-sizing, 2) 10vw;
   z-index: 5;
   position: relative;
   /*display: flex;
