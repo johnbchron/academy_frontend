@@ -1197,6 +1197,8 @@ function get_academy_mode_description(mode) {
     return "adaptive training";
   } else if (mode == 1) {
     return "full assessment (10 races)"
+  } else if (mode == 2) {
+    return "adaptive v2"
   } else if (mode >= 100) {
     return "manual"
   }
