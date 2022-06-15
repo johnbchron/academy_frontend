@@ -135,7 +135,7 @@ async function fetch_all_tenures() {
   for (let i = 0; i < tenure_ids.length; i++) {
     try {
       const rawTenure = await fetch_tenure(tenure_ids[i]);
-      const tenure = {
+      let tenure = {
         id: tenure_ids[i],
         academy_mode: rawTenure.academy_mode,
         current_derc_supply: rawTenure.current_derc_supply,
@@ -146,6 +146,9 @@ async function fetch_all_tenures() {
         state: rawTenure.state,
         tenure_length: rawTenure.tenure_length,
       };
+      if (wei_to_eth(tenure.current_derc_supply) < 0.001) {
+        tenure.current_derc_supply = 0;
+      }
       tenures.push(tenure);
     } catch (e) {
       console.log("unable to fetch tenure:", e);
