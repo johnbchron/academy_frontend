@@ -4,6 +4,23 @@
   margin-top: $base-sizing;
 }
 
+.active-only-toggle {
+  display: none
+}
+
+.inactive-tenure {
+  display: block;
+}
+
+.active-only-toggle:checked ~ .inactive-tenure {
+  display: none;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .columns {
   display: flex;
   flex-wrap: wrap;

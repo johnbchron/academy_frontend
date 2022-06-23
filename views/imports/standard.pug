@@ -7,5 +7,9 @@
 
 .section
   .section__text
-    h2 Enrollment Information
+    .table-header
+      h2 Enrollment Information
+      label(for="active-only-toggle").btn.btn__action active only
     #standard-table.vr.rows
+      h4 loading tenures...
+      input(type="checkbox")#active-only-toggle.active-only-toggle

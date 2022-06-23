@@ -7,17 +7,12 @@
 
 .section
   .section__text
-    h2 Enrollment Information
+    .table-header
+      h2 Enrollment Information
+      label(for="active-only-toggle").btn.btn__action active only
     #admin-table.vr.rows
-      //- .row
-        .column
-          p Example Contract
-        .column
-          p Status
-        .column
-          p Balance
-        .column.column__right
-          <button class="btn btn__action">Example</button>
+      h4 loading tenures...
+      input(type="checkbox")#active-only-toggle.active-only-toggle
   
 .section
   .section__text

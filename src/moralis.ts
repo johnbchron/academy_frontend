@@ -207,11 +207,11 @@ function clipboard_button(input) {
 }
 
 async function build_admin_dashboard() {
-  static_content.admin_table.innerHTML = "<h4>loading tenures...</h4>";
+  // static_content.admin_table.innerHTML = "<h4>loading tenures...</h4>";
 
   tenures = await fetch_all_tenures();
 
-  let table_data = "";
+  let table_data = `<input class="active-only-toggle" type="checkbox" id="active-only-toggle">`;
 
   let index;
   for (index = tenures.length - 1; index >= 0; index--) {
@@ -225,9 +225,9 @@ async function build_admin_dashboard() {
     const withdraw_button = `<button class="btn btn__action" onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
     const change_mode_button = `<button class="btn btn__action" onclick="javascript:change_mode_prompt(${i.id})">change mode</button>`;
 
-    table_data += `<div class="row">`;
     switch (i.state) {
       case 0: {
+        table_data += `<div class="row inactive-tenure">`;
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -248,6 +248,7 @@ async function build_admin_dashboard() {
         break;
       }
       case 1: {
+        table_data += `<div class="row inactive-tenure">`;
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -273,6 +274,7 @@ async function build_admin_dashboard() {
         break;
       }
       case 2: {
+        table_data += `<div class="row active-tenure">`;
         table_data += '<div class="columns-2">';
         table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -301,6 +303,7 @@ async function build_admin_dashboard() {
         break;
       }
       case 3: {
+        table_data += `<div class="row active-tenure">`;
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -329,6 +332,7 @@ async function build_admin_dashboard() {
         break;
       }
       case 4: {
+        table_data += `<div class="row inactive-tenure">`;
         table_data += '<div class="columns-2">';
         table_data += data_cell("#" + zero_pad(i.id, 4), "cancelled");
         table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -368,7 +372,7 @@ async function build_admin_dashboard() {
 }
 
 async function build_standard_dashboard() {
-  static_content.admin_table.innerHTML = "<h4>loading tenures...</h4>";
+  // static_content.admin_table.innerHTML = "<h4>loading tenures...</h4>";
 
   let index;
 
@@ -382,8 +386,9 @@ async function build_standard_dashboard() {
       user_tenures.push(tenures[index]);
     }
   }
+  console.log("debug 1")
 
-  let table_data = "";
+  let table_data = `<input class="active-only-toggle" type="checkbox" id="active-only-toggle">`;
 
   if (user_tenures.length > 0) {
     for (index = user_tenures.length - 1; index >= 0; index--) {
@@ -397,9 +402,9 @@ async function build_standard_dashboard() {
       const withdraw_button = `<button class="btn btn__action" onclick="javascript:withdraw_prompt(${i.id})">withdraw</button>`;
       const change_mode_button = `<button class="btn btn__action" onclick="javascript:change_mode_prompt(${i.id})">change mode</button>`;
 
-      table_data += `<div class="row">`;
       switch (i.state) {
         case 0: {
+          table_data += `<div class="row inactive-tenure">`;
           table_data += '<div class="columns-2">';
           table_data += data_cell("#" + zero_pad(i.id, 4), "initialized");
           table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -420,6 +425,7 @@ async function build_standard_dashboard() {
           break;
         }
         case 1: {
+          table_data += `<div class="row inactive-tenure">`;
           table_data += '<div class="columns-2">';
           table_data += data_cell("#" + zero_pad(i.id, 4), "supplied");
           table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -440,6 +446,7 @@ async function build_standard_dashboard() {
           break;
         }
         case 2: {
+          table_data += `<div class="row active-tenure">`;
           table_data += '<div class="columns-2">';
           table_data += green_data_cell("#" + zero_pad(i.id, 4), "active");
           table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -463,6 +470,7 @@ async function build_standard_dashboard() {
           break;
         }
         case 3: {
+          table_data += `<div class="row active-tenure">`;
           table_data += '<div class="columns-2">';
           table_data += data_cell("#" + zero_pad(i.id, 4), "paused");
           table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -486,6 +494,7 @@ async function build_standard_dashboard() {
           break;
         }
         case 4: {
+          table_data += `<div class="row inactive-tenure">`;
           table_data += '<div class="columns-2">';
           table_data += data_cell("#" + zero_pad(i.id, 4), "cancelled");
           table_data += data_cell("TYPE", get_academy_mode_description(i.academy_mode));
@@ -518,6 +527,8 @@ async function build_standard_dashboard() {
   else {
     table_data = `<div>You currently have no enrollments. Navigate to <a href="https://smracing.io" target="_blank" rel="noreferrer noopener">smracing.io</a> to enroll.</div>`;
   }
+
+  console.log("debug 2")
 
   static_content.standard_table.innerHTML = table_data;
 
