@@ -441,7 +441,7 @@ async function build_standard_dashboard() {
             wei_to_eth(i.current_derc_supply) + " DERC"
           );
           table_data += '</div><div class="columns-1">';
-          table_data += cancel_button;
+          table_data += deposit_button + cancel_button;
           table_data += "</div>";
           break;
         }
@@ -465,7 +465,7 @@ async function build_standard_dashboard() {
             wei_to_eth(i.current_derc_supply) + " DERC"
           );
           table_data += '</div><div class="columns-1">';
-          table_data += cancel_button;
+          table_data += deposit_button + cancel_button;
           table_data += "</div>";
           break;
         }
@@ -489,7 +489,7 @@ async function build_standard_dashboard() {
             wei_to_eth(i.current_derc_supply) + " DERC"
           );
           table_data += '</div><div class="columns-1">';
-          table_data += cancel_button;
+          table_data += deposit_button + cancel_button;
           table_data += "</div>";
           break;
         }
